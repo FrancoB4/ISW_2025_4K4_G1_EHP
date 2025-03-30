@@ -17,7 +17,7 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
 
 ## Estructura de archivos
 - ISW_2025_4K4_G1_EHP
-  -**base_line**
+  - **base_line**
   - **main**
     - **project**
       - design
@@ -63,8 +63,8 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
 | Diagrama de Casos de Uso | EHP_DIAG_CU.eap | main/product/requirements/ | Producto |
 | Documento de Diseño | EHP_DOC_DESIGN.docx | main/product/design/ | Producto |
 | Documento de Pruebas | EHP_DOC_TEST_<NN>.docx | main/project/tests_documentation/ | Iteración |
-| Pruebas de Android | EHP_TEST_ANDROID<NN>.<extensión> | main/src/frontend/android/tests_android/ | Iteración |
-| Pruebas de iOS | EHP_TEST_IOS_<NN>.<extensión> | main/src/frontend/ios/tests_ios/ | Iteración |
+| Pruebas de Android | EHP_TEST_ANDROID<NN>.<extensión> | main/src/frontend/android/test_android/ | Iteración |
+| Pruebas de iOS | EHP_TEST_IOS_<NN>.<extensión> | main/src/frontend/ios/test_ios/ | Iteración |
 | Scripts de Automatización | EHP_SCRIPT_<NN>.<extensión> | main/product/scripts/ | Producto |
 | Plan de Despliegue | EHP_DEPLOYMENT_PLAN.docx | main/project/deployment/ | Proyecto |
 | Plan de Desarrollo de Software | EHP_DEV_PLAN.docx | main/project/plannings/ | Proyecto |
