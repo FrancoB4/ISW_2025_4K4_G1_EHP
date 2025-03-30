@@ -49,27 +49,64 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
         - non_technical_manual
         - technical_manual
   
-  
-## Items de configuración
-| Ítem de configuración | Regla Nombrado | Ubicación Física
-| ------------ | ------------ | ------------ | 
 
+## Listado de ítems de configuración
+
+| Ítem de Configuración | Regla de Nombrado | Ubicación Física | Tipo de Ítem |
+|-----------------------|------------------|------------------|--------------|
+| Documento de Línea Base | EHP_DOC_BASE_LINE_<ITERxx>_<NAME_BL>_<NN>.docx | base_line/ | Iteración |
+| Historias de Usuario | EHP_US_<NN>.docx | main/product/requirements/user_stories/ | Producto |
+| Especificación de Requerimientos de Software | EHP_ERS_<NN>.docx | main/project/requirements/ | Proyecto |
+| Manual de Usuario Técnico | EHP_TECHNICAL_USER_MANUAL_<NN>.pdf | main/product/user_manuals/technical_manuals/ | Producto |
+| Manual de Usuario No Técnico | EHP_NONTECHNICAL_USER_MANUAL_<NN>.pdf | main/product/user_manuals/non_technical_manuals/ | Producto |
+| Casos de Uso | EHP_CU_<CU_NAME>_<Nro.CU>.docx | main/product/requirements/ | Producto |
+| Diagrama de Casos de Uso | EHP_DIAG_CU.eap | main/product/requirements/ | Producto |
+| Documento de Diseño | EHP_DOC_DESIGN.docx | main/product/design/ | Producto |
+| Documento de Pruebas | EHP_DOC_TEST_<NN>.docx | main/project/tests_documentation/ | Iteración |
+| Pruebas de Android | EHP_TEST_ANDROID<NN>.<extensión> | main/src/frontend/android/tests_android/ | Iteración |
+| Pruebas de iOS | EHP_TEST_IOS_<NN>.<extensión> | main/src/frontend/ios/tests_ios/ | Iteración |
+| Scripts de Automatización | EHP_SCRIPT_<NN>.<extensión> | main/product/scripts/ | Producto |
+| Plan de Despliegue | EHP_DEPLOYMENT_PLAN.docx | main/project/deployment/ | Proyecto |
+| Plan de Desarrollo de Software | EHP_DEV_PLAN.docx | main/project/plannings/ | Proyecto |
+| Íconos y Recursos Gráficos | EHP_ICON_<NN>.<extensión> | main/assets/icons/ | Producto |
+| API | EHP_API_<NOMBRE_COMPONENTE>.<extensión> | main/src/backend/API/ | Producto |
+| Pruebas de Backend | EHP_TEST_BACK_<NN>.<extensión> | main/src/backend/test_back/ | Iteración |
+| Código Fuente Backend | EHP_BACK_<NOMBRE_COMPONENTE>.<extensión> | main/src/backend/ | Producto |
+| Código Fuente Android | EHP_ANDROID_<NOMBRE_COMPONENTE>.<extensión> | main/src/frontend/android | Producto |
+| Código Fuente iOS | EHP_IOS_<NOMBRE_COMPONENTE>.<extensión> | main/src/frontend/ios | Producto |
+| Base de Datos | EHP_DB_<NOMBRE_COMPONENTE>.<extensión> | main/src/db | Producto |
+| Diseño de Arquitectura | EHP_ARCH_<ITERxx>.docx | main/design/architecture | Proyecto |
+| Product Backlog | EHP_PRODUCT_BACKLOG_<ITERxx>.xlsx | main/project/plannings/ | Proyecto |
+| Sprint Backlog | EHP_SPRINT_BACKLOG_<ITERxx>_<SPRINTxx>.xlsx | main/sprints/sprint_<NN>/sprint_backlog/ | Iteración |
+| Sprint Review | EHP_SPRINT_REVIEW_<ITERxx>_<SPRINTxx>.docx | main/meetings/ | Iteración |
+| Métricas del Sprint | EHP_SPRINT_METRICS_<ITERxx>_<SPRINTxx>.xlsx | sprints/sprint_<NN>/sprint_metrics/ | Iteración |
+| Métricas del Proyecto | EHP_PROJECT_METRICS.xlsx | main/project/plannings/ | Proyecto |
+| Minuta de Relevamiento | EHP_MINUTA_<ASUNTO>_<YYYYMMDD>_<HHMM>.docx | main/meetings/ | Iteración |
 
 
 ## Glosario
 | Sigla| Significado |
 | ------------ | ------------ |
-| \<Extension\> | Nombre de la extensión del archivo, puede estar en diferentes formatos. Ejemplo: .doc, .jpg, .jpeg, .pdf, .css, .html, .js, etc. |
-| \<0x\> | X es un número incremental. Ej: 01, 02, 0n, etc. |
-| \<vx\> | V significa versión y x es un número incremental. Ej: v1, v2, vn, etc. |
+| \<EHP\> | EcoHarmony Park. |
+| \<ITERxx\> | Número de la iteración del proyecto. Ejemplo: ITER02. |
+| \<NN\> | Número cardinal comenzando en 00. |
+| \<CU_NAME\> | Nombre del Caso de Uso. |
+| \<US_NAME\> | Nombre de la User Story. |
+| \<Nro.CU\> | Número del Caso de Uso. |
+| \<extension\> | Nombre de la extensión de un archivo identificado como ítem de configuración. |
+| \<SPRINTxx\> | Número del Sprint. Ejemplo: SPRINT03. |
+| \<YYYYMMDD\> | Fecha en formato numérico (AñoMesDía). Ejemplo: 20250330. |
+| \<HHMM\> | Hora de inicio en formato numérico (HoraMinutos). Ejemplo: 1430. |
+| \<ASUNTO\> | Asunto de minuta de reunión. |
+| \<NOMBRE_COMPONENTE\> | Nombre del componente. |
+| \<NAME_BL\> | Nombre de la línea base. Se especifica tipo de línea base. |
 
 
 ## Criterio de línea base
+
 Criterio de línea base
-Como grupo, hemos decidido que el momento para definir una nueva línea base será en cada instancia de entregas del proyecto. Esto significa que estableceremos una línea base después de recibir las correcciones.
-Nuestra línea base en el repositorio de software se configurará considerando estas instancias evaluativas clave. En cada una de ellas, marcamos un nuevo hito en la rama principal del repositorio, partiendo desde la estructura básica preexistente. Estas instancias representan oportunidades cruciales para medir el progreso y establecer puntos de referencia en nuestra labor de gestión de configuración de software.
-Cada línea base tiene un nombre con la siguiente nomenclatura:
-v[MAJOR].[MINOR]
+Como grupo, hemos decidido que el momento para definir una nueva línea base será cuando el producto alcance un hito u objetivo importante en términos de funcionalidad, habiendo sido previamente testeado y validado para garantizar su estabilidad. Para ello, nos aseguraremos de que todas las funcionalidades clave estén implementadas, que no existan errores críticos y que la versión cumpla con los requisitos acordados. Además, la documentación e items de configuración asociados deberán estar actualizados, y el código deberá haber pasado por las revisiones necesarias antes de ser marcado como línea base en el repositorio.
+
 
 Líneas base disponibles: 
 
