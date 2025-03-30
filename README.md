@@ -26,6 +26,10 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
       - meetings
       - plannings
       - requirements
+      - sprints
+        - sprint<NN>
+          - sprint_backing
+          - sprint_metrics
       - tests_documentation
     - **product**
       - architecture
@@ -81,7 +85,7 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
 | Sprint Review | EHP_SPRINT_REVIEW_<ITERxx>_<SPRINTxx>.docx | main/meetings/ | Iteración |
 | Métricas del Sprint | EHP_SPRINT_METRICS_<ITERxx>_<SPRINTxx>.xlsx | sprints/sprint_<NN>/sprint_metrics/ | Iteración |
 | Métricas del Proyecto | EHP_PROJECT_METRICS.xlsx | main/project/plannings/ | Proyecto |
-| Minuta de Relevamiento | EHP_MINUTA_<ASUNTO>_<YYYYMMDD>_<HHMM>.docx | main/meetings/ | Iteración |
+| Minuta de Relevamiento | EHP_MINUTA_<YYYYMMDD>_<HHMM>_<ASUNTO>.docx | main/meetings/ | Iteración |
 
 
 ## Glosario
