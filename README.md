@@ -1,4 +1,4 @@
-# ISW_G6_4K3_2024
+# ISW_G1_4K4_2025
 Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Grupo 1.
 
 # Integrantes del grupo
