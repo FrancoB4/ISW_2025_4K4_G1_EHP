@@ -16,31 +16,39 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
 | Santino Zahir Chamia | 95001 | santinochamia1192@gmail.com | 
 
 ## Estructura de archivos
-- **assets**
-  - icons
-- **documentation**
-  - project_documentation
-    - meetings
-    - plannings
-  - product_documents
-    - design
-    - requirements
-      - user_stories
-    - architecture
-    - user_manuals
-      - non_technical_manual
-      - technical_manual
-    - tests_docs
-- **src**
-  - backend
-    - API
-    - tests_back
-  - db 
-  - frontend
-    - android
-      - tests_android
-    - iOS
-      - tests_iOS
+- ISW_2025_4K4_G1_EHP
+  -**base_line**
+  - **main**
+    - **project**
+      - design
+      - deployment
+      - implementation
+      - meetings
+      - plannings
+      - requirements
+      - tests_documentation
+    - **product**
+      - architecture
+      - assets
+        - icons
+      - design
+      - deployment
+      - requirements
+        - user_stories
+      - scripts
+      - src
+        - backend
+          - API
+          - test_back
+        - frontend
+          - android
+            - test_android
+          - ios
+            - test_ios
+      - user_manuals
+        - non_technical_manual
+        - technical_manual
+  
   
 ## Items de configuración
 | Ítem de configuración | Regla Nombrado | Ubicación Física
