@@ -58,34 +58,35 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
 
 | Ítem de Configuración | Regla de Nombrado | Ubicación Física | Tipo de Ítem |
 |-----------------------|------------------|------------------|--------------|
-| Documento de Línea Base | EHP_DOC_BASE_LINE_<ITERxx>_<NAME_BL>_<NN>.docx | base_line/ | Iteración |
-| Historias de Usuario | EHP_US_<NN>.docx | main/product/requirements/user_stories/ | Producto |
-| Especificación de Requerimientos de Software | EHP_ERS_<NN>.docx | main/project/requirements/ | Proyecto |
-| Manual de Usuario Técnico | EHP_TECHNICAL_USER_MANUAL_<NN>.pdf | main/product/user_manuals/technical_manuals/ | Producto |
-| Manual de Usuario No Técnico | EHP_NONTECHNICAL_USER_MANUAL_<NN>.pdf | main/product/user_manuals/non_technical_manuals/ | Producto |
-| Casos de Uso | EHP_CU_<CU_NAME>_<Nro.CU>.docx | main/product/requirements/ | Producto |
-| Diagrama de Casos de Uso | EHP_DIAG_CU.eap | main/product/requirements/ | Producto |
-| Documento de Diseño | EHP_DOC_DESIGN.docx | main/product/design/ | Producto |
-| Documento de Pruebas | EHP_DOC_TEST_<NN>.docx | main/project/tests_documentation/ | Iteración |
-| Pruebas de Android | EHP_TEST_ANDROID<NN>.<extensión> | main/src/frontend/android/test_android/ | Iteración |
-| Pruebas de iOS | EHP_TEST_IOS_<NN>.<extensión> | main/src/frontend/ios/test_ios/ | Iteración |
-| Scripts de Automatización | EHP_SCRIPT_<NN>.<extensión> | main/product/scripts/ | Producto |
-| Plan de Despliegue | EHP_DEPLOYMENT_PLAN.docx | main/project/deployment/ | Proyecto |
-| Plan de Desarrollo de Software | EHP_DEV_PLAN.docx | main/project/plannings/ | Proyecto |
-| Íconos y Recursos Gráficos | EHP_ICON_<NN>.<extensión> | main/assets/icons/ | Producto |
-| API | EHP_API_<NOMBRE_COMPONENTE>.<extensión> | main/src/backend/API/ | Producto |
-| Pruebas de Backend | EHP_TEST_BACK_<NN>.<extensión> | main/src/backend/test_back/ | Iteración |
-| Código Fuente Backend | EHP_BACK_<NOMBRE_COMPONENTE>.<extensión> | main/src/backend/ | Producto |
-| Código Fuente Android | EHP_ANDROID_<NOMBRE_COMPONENTE>.<extensión> | main/src/frontend/android | Producto |
-| Código Fuente iOS | EHP_IOS_<NOMBRE_COMPONENTE>.<extensión> | main/src/frontend/ios | Producto |
-| Base de Datos | EHP_DB_<NOMBRE_COMPONENTE>.<extensión> | main/src/db | Producto |
-| Diseño de Arquitectura | EHP_ARCH_<ITERxx>.docx | main/design/architecture | Proyecto |
-| Product Backlog | EHP_PRODUCT_BACKLOG_<ITERxx>.xlsx | main/project/plannings/ | Proyecto |
-| Sprint Backlog | EHP_SPRINT_BACKLOG_<ITERxx>_<SPRINTxx>.xlsx | main/sprints/sprint_<NN>/sprint_backlog/ | Iteración |
-| Sprint Review | EHP_SPRINT_REVIEW_<ITERxx>_<SPRINTxx>.docx | main/meetings/ | Iteración |
-| Métricas del Sprint | EHP_SPRINT_METRICS_<ITERxx>_<SPRINTxx>.xlsx | sprints/sprint_<NN>/sprint_metrics/ | Iteración |
-| Métricas del Proyecto | EHP_PROJECT_METRICS.xlsx | main/project/plannings/ | Proyecto |
-| Minuta de Relevamiento | EHP_MINUTA_<YYYYMMDD>_<HHMM>_<ASUNTO>.docx | main/meetings/ | Iteración |
+| Documento de Línea Base | `EHP_DOC_BASE_LINE_<ITERxx>_<NAME_BL>_<NN>.docx` | `base_line/` | Iteración |
+| Historias de Usuario | `EHP_US_<NN>.docx` | `main/product/requirements/user_stories/` | Producto |
+| Especificación de Requerimientos de Software | `EHP_ERS_<NN>.docx` | `main/project/requirements/` | Proyecto |
+| Manual de Usuario Técnico | `EHP_TECHNICAL_USER_MANUAL_<NN>.pdf` | `main/product/user_manuals/technical_manuals/` | Producto |
+| Manual de Usuario No Técnico | `EHP_NONTECHNICAL_USER_MANUAL_<NN>.pdf` | `main/product/user_manuals/non_technical_manuals/` | Producto |
+| Casos de Uso | `EHP_CU_<CU_NAME>_<Nro.CU>.docx` | `main/product/requirements/` | Producto |
+| Diagrama de Casos de Uso | `EHP_DIAG_CU.eap` | `main/product/requirements/` | Producto |
+| Documento de Diseño | `EHP_DOC_DESIGN.docx` | `main/product/design/` | Producto |
+| Documento de Pruebas | `EHP_DOC_TEST_<NN>.docx` | `main/project/tests_documentation/` | Iteración |
+| Pruebas de Android | `EHP_TEST_ANDROID<NN>.<extension>` | `main/src/frontend/android/test_android/` | Iteración |
+| Pruebas de iOS | `EHP_TEST_IOS_<NN>.<extension>` | `main/src/frontend/ios/test_ios/` | Iteración |
+| Scripts de Automatización | `EHP_SCRIPT_<NN>.<extension>` | `main/product/scripts/` | Producto |
+| Plan de Despliegue | `EHP_DEPLOYMENT_PLAN.docx` | `main/project/deployment/` | Proyecto |
+| Plan de Desarrollo de Software | `EHP_DEV_PLAN.docx` | `main/project/plannings/` | Proyecto |
+| Íconos y Recursos Gráficos | `EHP_ICON_<NN>.<extension>` | `main/assets/icons/` | Producto |
+| API | `EHP_API_<NOMBRE_COMPONENTE>.<extension>` | `main/src/backend/API/` | Producto |
+| Pruebas de Backend | `EHP_TEST_BACK_<NN>.<extension>` | `main/src/backend/test_back/` | Iteración |
+| Código Fuente Backend | `EHP_BACK_<NOMBRE_COMPONENTE>.<extension>` | `main/src/backend/` | Producto |
+| Código Fuente Android | `EHP_ANDROID_<NOMBRE_COMPONENTE>.<extension>` | `main/src/frontend/android/` | Producto |
+| Código Fuente iOS | `EHP_IOS_<NOMBRE_COMPONENTE>.<extension>` | `main/src/frontend/ios/` | Producto |
+| Base de Datos | `EHP_DB_<NOMBRE_COMPONENTE>.<extension>` | `main/src/db/` | Producto |
+| Diseño de Arquitectura | `EHP_ARCH_<ITERxx>.docx` | `main/design/architecture/` | Proyecto |
+| Product Backlog | `EHP_PRODUCT_BACKLOG_<ITERxx>.xlsx` | `main/project/plannings/` | Proyecto |
+| Sprint Backlog | `EHP_SPRINT_BACKLOG_<ITERxx>_<SPRINTxx>.xlsx` | `main/sprints/sprint_<NN>/sprint_backlog/` | Iteración |
+| Sprint Review | `EHP_SPRINT_REVIEW_<ITERxx>_<SPRINTxx>.docx` | `main/meetings/` | Iteración |
+| Métricas del Sprint | `EHP_SPRINT_METRICS_<ITERxx>_<SPRINTxx>.xlsx` | `sprints/sprint_<NN>/sprint_metrics/` | Iteración |
+| Métricas del Proyecto | `EHP_PROJECT_METRICS.xlsx` | `main/project/plannings/` | Proyecto |
+| Minuta de Relevamiento | `EHP_MINUTA_<YYYYMMDD>_<HHMM>_<ASUNTO>.docx` | `main/meetings/` | Iteración |
+
 
 
 ## Glosario
