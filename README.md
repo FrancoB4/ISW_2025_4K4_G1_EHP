@@ -6,7 +6,7 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
 | ------------ | ------------ | ------------ | 
 | Benjamin Cimatti | 94312 | benja.cimatti@gmail.com |
 | Daiana Jacqueline Makula | 89209 | daiajh06@gmail.com |
-| Daniel Pastor Reinoso | 92264 |  | 
+| Daniel Pastor Reinoso | 92264 | dprmse3@gmail.com | 
 | Francisco José Rodriguez | 78741 | rodriguezfranciscojm@gmail.com |
 | Franco Bonfiglio Vazquez | 96490 | francobonfigliovazquez@gmail.com | 
 | Joaquin Ernesto Koncurat | 85216 | joaquinkoncurat@gmail.com |
