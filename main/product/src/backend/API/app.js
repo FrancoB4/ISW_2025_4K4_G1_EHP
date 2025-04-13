@@ -1,11 +1,9 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const userRoutes = require('./routes/inscripcion.routes');
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.use(express.json());
+app.use('/api/inscripciones', userRoutes);
+
+module.exports = app;
