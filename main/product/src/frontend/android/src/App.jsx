@@ -14,7 +14,7 @@ export function App() {
           </div>
         </div>
       </header>
-      {/* Logo and Navigation */}
+      {/* Logo y Navegacion */}
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto py-4 px-4">
           <div className="flex items-center justify-between mb-4">
@@ -41,7 +41,7 @@ export function App() {
           <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
         </div>
       </div>
-      {/* Main Content */}
+      {/* Contenido Principal */}
       <main className="max-w-4xl mx-auto py-8 px-4">
         <ActivityRegistration
           currentStep={currentStep}

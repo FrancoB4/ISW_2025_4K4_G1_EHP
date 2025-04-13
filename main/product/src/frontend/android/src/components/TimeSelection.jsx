@@ -1,9 +1,11 @@
+{/* Componente que se encarga de los horarios y cupos disponibles */}
 import React from "react"
 export const TimeSelection = ({
   selectedActivity,
   selectedTime,
   onSelectTime
 }) => {
+  {/* Horarios y cupos disponibles harcoded, cambiar si se usa backend*/}
   const availableTimes = [
     {
       id: "morning",

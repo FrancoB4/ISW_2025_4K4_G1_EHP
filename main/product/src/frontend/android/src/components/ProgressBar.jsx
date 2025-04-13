@@ -1,3 +1,4 @@
+{/* Componente que se encarga de la barra de progreso */}
 import React from "react"
 export const ProgressBar = ({ currentStep, totalSteps }) => {
   const steps = [
@@ -10,7 +11,7 @@ export const ProgressBar = ({ currentStep, totalSteps }) => {
       step: 2
     },
     {
-      name: "Participantes",
+      name: "Términos y Condiciones",
       step: 3
     },
     {

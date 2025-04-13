@@ -1,6 +1,8 @@
+{/* Componente de seleccion de actividad, aqui se manejan los 4 cuadros de actvidades */}
 import React from "react"
 import { CompassIcon, MountainIcon, FlowerIcon, BoxIcon } from "lucide-react"
 export const ActivitySelection = ({ selectedActivity, onSelectActivity }) => {
+  {/* Actividades harcoded, cambiar si se usa backend */}
   const activities = [
     {
       id: "tirolesa",

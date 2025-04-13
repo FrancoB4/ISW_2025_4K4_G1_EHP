@@ -1,3 +1,4 @@
+{/* Componente que se encarga de mostrar los términos y condiciones */}
 import React from "react"
 export const TermsAndConditions = ({
   activity,
@@ -6,7 +7,7 @@ export const TermsAndConditions = ({
   onNext,
   onBack
 }) => {
-  // Mock terms content based on activity
+  {/* Términos y condiciones harcoded, usa switch case dependiendo de la actividad seleccionada, cambiar si se usa backend */}
   const getTermsContent = () => {
     switch (activity) {
       case "tirolesa":

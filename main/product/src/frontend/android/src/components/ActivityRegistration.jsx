@@ -1,3 +1,5 @@
+{/* Parte principal de la pagina, maneja los estados  va cambiando entre las opciones, los otros components ayudan a este */}
+
 import React, { useState } from "react"
 import { ActivitySelection } from "./ActivitySelection"
 import { TimeSelection } from "./TimeSelection"
@@ -39,6 +41,8 @@ export const ActivityRegistration = ({
       setCurrentStep(currentStep - 1)
     }
   }
+
+  {/* Horarios hardcoded, cambiar si se agrega backend */}
   const getTimeDisplay = timeSlotId => {
     const timeMap = {
       morning: "09:00 AM",
@@ -48,6 +52,13 @@ export const ActivityRegistration = ({
     }
     return timeMap[timeSlotId] || timeSlotId
   }
+
+  {/* Cambio de aspecto de la pagina dependiendo del "Step" o paso en el que se encuentre
+    Case 1: paginia inicial de seleccion de actividad
+    Case 2: pagina de inscripcion de cada participante
+    Case 3: pagina de terminos y condiciones
+    Case 4: pagina de confirmacion y retorno */}
+    
   const renderStep = () => {
     switch (currentStep) {
       case 1:

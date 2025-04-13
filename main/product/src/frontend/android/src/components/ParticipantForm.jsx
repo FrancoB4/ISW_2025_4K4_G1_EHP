@@ -1,3 +1,4 @@
+{/* Componente que se encarga del formulario de cada participante */}
 import React from "react"
 export const ParticipantForm = ({
   participants,
