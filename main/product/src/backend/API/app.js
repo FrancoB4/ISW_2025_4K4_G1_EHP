@@ -1,9 +1,7 @@
-const express = require('express');
-const userRoutes = require('./routes/inscripcion.routes');
+import express from 'express';
+import { inscripcionRouter } from './routes/inscripcion.routes.js';
 
-const app = express();
+export const app = express();
 
 app.use(express.json());
-app.use('/api/inscripciones', userRoutes);
-
-module.exports = app;
+app.use('/api/inscripciones', inscripcionRouter);

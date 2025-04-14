@@ -1,8 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model, DataTypes } from 'sequelize';
+export default (sequelize) => {
   class Actividad extends Model {
     /**
      * Helper method for defining associations.
@@ -20,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Actividad',
+    tableName: 'Actividades'
   });
   Actividad.associate = function(models) {
     Actividad.hasMany(models.Horario, {

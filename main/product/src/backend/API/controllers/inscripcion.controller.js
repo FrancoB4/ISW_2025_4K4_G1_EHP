@@ -1,11 +1,27 @@
-const userService = require('../services/inscripcion.service');
+import { getAll, create, bulkCreate } from '../services/inscripcion.service.js';
 
-exports.getAllUsers = (req, res) => {
-  const users = userService.getAll();
-  res.json(users);
+export const getAllInscripciones = (req, res) => {
+  const inscripciones = getAll();
+  res.json({message: 'Ok.', inscripciones});
+  return res;
 };
 
-exports.createUser = (req, res) => {
-  const user = userService.create(req.body);
-  res.status(201).json(user);
+export const createInscripcion = (req, res) => {
+  const data = req.body
+
+  if (!data?.email || !data?.age || !data?.horarioId) {
+    console.log('[Inscripciones | create] Warning: Missed required data.');
+    res.status(400).json({message: 'Missed required data.', data: {}});
+    return ;
+  }
+  
+  try {
+    inscripcion = create(data);
+    res.status(201).json({message: 'Ok.', data: inscripcion});
+  }
+  catch (error) {
+    console.log('[Inscripciones | create] Error:', error);
+    res.status(500).json({message: 'Error', data: {}})
+  }
+  
 };

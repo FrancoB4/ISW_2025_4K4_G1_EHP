@@ -1,8 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const userController = require('../controllers/inscripcion.controller');
+import express from 'express';
+import { getAllInscripciones, createInscripcion } from '../controllers/inscripcion.controller.js';
 
-router.get('/', userController.getAllUsers);
-router.post('/', userController.createUser);
+export const inscripcionRouter = express.Router();
 
-module.exports = router;
+inscripcionRouter.get('/', getAllInscripciones);
+inscripcionRouter.post('/', createInscripcion);
