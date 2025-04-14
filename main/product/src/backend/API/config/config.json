@@ -1,10 +1,7 @@
 {
   "development": {
-    "username": "ecoharmony_admin",
-    "password": "123456789",
-    "database": "ecoharmony",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "sqlite",
+    "storage": "./database.sqlite"
   },
   "test": {
     "username": "root",

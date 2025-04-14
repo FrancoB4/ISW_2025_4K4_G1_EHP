@@ -2,26 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Horarios', {
+    await queryInterface.createTable('Inscripciones', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      start_date: {
-        type: Sequelize.DATE,
-        allowNull: false
+      email: {
+        type: Sequelize.STRING
       },
-      end_date: {
-        type: Sequelize.DATE,
-        allowNull: false
+      edad: {
+        type: Sequelize.INTEGER
       },
-      actividadId: {
+      horarioId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Actividades',
+          model: 'Horarios',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -38,6 +36,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Horarios');
+    await queryInterface.dropTable('Inscripcions');
   }
 };

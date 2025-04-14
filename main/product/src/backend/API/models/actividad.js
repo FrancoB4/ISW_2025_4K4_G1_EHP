@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Actividad.init({
     name: DataTypes.STRING,
-    places: DataTypes.INTEGER
+    places: DataTypes.INTEGER,
+    requirements:DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Actividad',
