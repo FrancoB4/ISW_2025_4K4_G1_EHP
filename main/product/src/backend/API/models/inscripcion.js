@@ -13,7 +13,7 @@ export default (sequelize) => {
   }
   Inscripcion.init({
     email: DataTypes.STRING,
-    edad: DataTypes.INTEGER
+    age: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Inscripcion',

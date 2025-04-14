@@ -1,12 +1,12 @@
 import { getAll, create, bulkCreate } from '../services/inscripcion.service.js';
 
-export const getAllInscripciones = (req, res) => {
-  const inscripciones = getAll();
+export const getAllInscripciones = async (_, res) => {
+  const inscripciones = await getAll();
   res.json({message: 'Ok.', inscripciones});
   return res;
 };
 
-export const createInscripcion = (req, res) => {
+export const createInscripcion = async (req, res) => {
   const data = req.body
 
   if (!data?.email || !data?.age || !data?.horarioId) {
@@ -16,7 +16,7 @@ export const createInscripcion = (req, res) => {
   }
   
   try {
-    inscripcion = create(data);
+    const inscripcion = await create(data);
     res.status(201).json({message: 'Ok.', data: inscripcion});
   }
   catch (error) {

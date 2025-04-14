@@ -4,7 +4,7 @@ const { Inscripcion } = db;
 
 export const getAll = async () => {
   try {
-    const inscripciones = Inscripcion.findAll();
+    const inscripciones = await Inscripcion.findAll();
     return inscripciones;
   }
   catch (error) {
@@ -14,11 +14,6 @@ export const getAll = async () => {
 }
 
 export const create = async (data) => {
-  if (!data?.email || !data?.age || !data?.horarioId) {
-    console.log('[Inscripciones | create] Warning: Missed required data.')
-    return ;
-  }
-  
   try {
     const inscripcion = await Inscripcion.create(data);
     return inscripcion
