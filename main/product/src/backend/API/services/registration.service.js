@@ -1,46 +1,22 @@
-// import db from '../models/index.js';
+import { Registration } from "../models/registration.js";
 
-// const { Inscripcion } = db;
+export const getAll = async () => {
+  try {
+    const registrations = await Registration.findAll();
+    return registrations;
+  }
+  catch (error) {
+    console.log('[Registrations | getAll] Error:', error);
+    return {};
+  }
+}
 
-// export const getAll = async () => {
-//   try {
-//     const inscripciones = await Inscripcion.findAll();
-//     return inscripciones;
-//   }
-//   catch (error) {
-//     console.log('[Inscripciones | getAll] Error:', error);
-//     return ;
-//   }
-// }
-
-// export const create = async (data) => {
-//   try {
-//     const inscripcion = await Inscripcion.create(data);
-//     return inscripcion
-//   }
-//   catch (error) {
-//     console.log('[Inscripciones | create] Error:', error);
-//   }
-// }
-
-// export const bulkCreate = async (data) => {
-//   if (data.length == 0) { return ; }
-//   try {
-//     let created = [];
-//     data.forEach(async (inscripcionData) => {
-//       if (data?.email && data?.age && data?.horarioId) {
-//         try {
-//           const inscripcion = await Inscripcion.create(data);
-//           created.push(inscripcion);
-//         }
-//         catch (error) {
-//           console.log('[Inscripciones | create] Error:', error);
-//         }
-//       }
-//     });
-//     return created;
-//   }
-//   catch (error) {
-//     console.log('[Inscripciones | bulkCreate] Error:', error);
-//   }
-// } 
+export const create = async (data) => {
+  try {
+    const registration = await Registration.create(data);
+    return registration
+  }
+  catch (error) {
+    console.log('[Registrations | create] Error:', error);
+  }
+}

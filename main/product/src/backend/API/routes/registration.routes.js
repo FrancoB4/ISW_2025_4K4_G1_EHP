@@ -1,7 +1,11 @@
 import express from 'express';
-import { getAllInscripciones, createInscripcion } from '../controllers/inscripcion.controller.js';
+import { getAllRegistrations, createRegistrations } from '../controllers/registration.controller.js';
+import { getAllRegDetails } from '../controllers/registration_detail.controller.js';
 
-export const inscripcionRouter = express.Router();
+const registrationRouter = express.Router();
 
-inscripcionRouter.get('/', getAllInscripciones);
-inscripcionRouter.post('/', createInscripcion);
+registrationRouter.get('/', getAllRegistrations);
+registrationRouter.post('/', createRegistrations);
+registrationRouter.get('/details', getAllRegDetails);
+
+export default registrationRouter

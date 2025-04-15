@@ -7,7 +7,7 @@ export const getAll = async () => {
     }
     catch (error) {
         console.log('[Schedule | getAll] Error:', error);
-        return ;
+        return {};
     }
 }
 
@@ -18,6 +18,6 @@ export const create = async (data) => {
     }
     catch (error) {
         console.log('[Schedule | create] Error: ', error);
-        return ;
+        return {};
     }
 }

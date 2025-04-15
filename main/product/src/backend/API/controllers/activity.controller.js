@@ -13,8 +13,8 @@ export const getAllActivities = async (_, res) => {
 
 export const createActivity = async (req, res) => {
     const data = req.body;
-    if (!data?.name || !data?.places) {
-        res.status(400).json({ message: 'Missed required data.', data: {} });
+    if (!data?.name || !data?.places || data?.clothingRequired === null) {
+        return res.status(400).json({ message: 'Missed required data.', data: {} });
     }
 
     try {

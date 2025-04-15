@@ -25,6 +25,10 @@ export const Activity = sequelize.define(
         terms: {
           type: DataTypes.STRING,
           allowNull: true
+        },
+        clothingRequired: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
         }
     },
     {
