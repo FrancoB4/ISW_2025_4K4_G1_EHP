@@ -2,7 +2,7 @@ import { sequelize } from "./db.js";
 
 export async function db_init() {
     try {
-        await sequelize.sync({ alter: true })
+        await sequelize.sync()
     } catch (error) {
         console.log(error)
     }
