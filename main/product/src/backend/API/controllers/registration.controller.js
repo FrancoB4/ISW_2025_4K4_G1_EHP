@@ -1,5 +1,7 @@
 import { getAll, create } from '../services/registration.service.js';
-import { bulkCreate } from '../services/registration_detail.service.js';
+import { bulkCreate, checkClothing } from '../services/registration_detail.service.js';
+import { getByIdSchedule } from '../services/schedule.service.js';
+import { getById } from '../services/activity.service.js';
 
 //formato req.body json
 // {
@@ -32,11 +34,26 @@ export const createRegistrations = async (req, res) => {
   }
   
   try {
+    const selected_schedule =  await getByIdSchedule(data.schedule_id);
+    const selected_activity = await getById(selected_schedule.activity_id);
+    const clothingReq = selected_activity.clothingRequired; 
+
+    if(clothingReq){
+      try {
+        checkClothing(data.visitors);
+      } catch (error) {
+        console.log('[Registrations | create] Error:', error);
+        return res.status(400).json({message: error.message, data: {}})
+      }
+    };
+    
     const registration = await create({
         email: data.email,
         schedule_id: data.schedule_id
     });
+
     const reg_id = registration.id;
+
     const reg_detail = await bulkCreate(reg_id, data.visitors);
 
     res.status(201).json({
@@ -47,7 +64,7 @@ export const createRegistrations = async (req, res) => {
   }
   catch (error) {
     console.log('[Registrations | create] Error:', error);
-    res.status(500).json({message: 'Error', data: {}})
+    res.status(500).json({message: error.message, data: {}})
   }
   
 };

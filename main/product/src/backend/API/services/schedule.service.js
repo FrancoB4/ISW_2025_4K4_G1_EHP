@@ -1,3 +1,4 @@
+import { Registration } from "../models/registration.js";
 import { Schedule } from "../models/schedule.js";
 
 export const getAll = async () => {
@@ -18,6 +19,18 @@ export const create = async (data) => {
     }
     catch (error) {
         console.log('[Schedule | create] Error: ', error);
+        return {};
+    }
+}
+
+export const getByIdSchedule = async (id) => {
+    try {
+        const schedule = await Schedule.findByPk(id);
+
+        return schedule;
+
+    } catch (error) {
+        console.log('[Schedule | getById] Error: ', error);
         return {};
     }
 }

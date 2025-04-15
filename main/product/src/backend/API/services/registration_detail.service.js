@@ -1,15 +1,15 @@
 import { RegistrationDetail } from "../models/registration_detail.js";
 
-export const bulkCreate = async(reg_id, visitors) => {
+export const bulkCreate = async(reg_id, visitors, clothingReq) => {
     let created = [];
 
     for (let i = 0; i < visitors.length; i++) {
         try {
-            const visitor = visitors[i];
-            const detail = await create(reg_id, visitor);
-            created.push(detail);
+          const visitor = visitors[i];
+          const detail = await create(reg_id, visitor);
+          created.push(detail);
         } catch (error) {
-            console.log('[RegistrationDetail | create] Error:', error);
+          console.log('[RegistrationDetail | create] Error:', error);
         }
     }
 
@@ -41,5 +41,15 @@ export const create = async (reg_id, data) => {
   }
   catch (error) {
     console.log('[Registrations | create] Error:', error);
+  }
+}
+
+export const checkClothing = (visitors) => {
+  for (let i = 0; i < visitors.length; i++) {
+    const visitor = visitors[i];
+    
+    if(!visitor.clothingSize){
+      throw new Error("Clothing size must be chosen!");
+    };
   }
 }

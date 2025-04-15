@@ -35,7 +35,7 @@ export const getById = async (id) => {
         return activity
 
     } catch (error) {
-        console.log('[Activites | getById] Error: ', error);
+        console.log('[Activity | getById] Error: ', error);
         return {};
     }
 } 
