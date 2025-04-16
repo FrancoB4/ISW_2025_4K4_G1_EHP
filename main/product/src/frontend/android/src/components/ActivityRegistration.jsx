@@ -5,24 +5,32 @@ import { ActivitySelection } from "./ActivitySelection"
 import { TimeSelection } from "./TimeSelection"
 import { ParticipantForm } from "./ParticipantForm"
 import { TermsAndConditions } from "./TermsAndConditions"
+import { NumberOfParticipants } from "./NumberOfParticipants"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+import { CalendarIcon } from "lucide-react"
+const getTimeDisplay = time => {
+  const [hours] = time.split(":")
+  const hour = parseInt(hours, 10)
+  if (hour < 12) {
+    return `${time} AM`
+  } else if (hour === 12) {
+    return `${time} PM`
+  } else {
+    return `${hour - 12}:00 PM`
+  }
+}
 export const ActivityRegistration = ({
   currentStep,
   setCurrentStep,
   totalSteps
 }) => {
   const [formData, setFormData] = useState({
+    participants: 0,
     activity: "",
+    selectedDate: null,
     timeSlot: "",
-    participants: 1,
-    people: [
-      {
-        name: "",
-        lastName: "",
-        dni: "",
-        age: "",
-        size: ""
-      }
-    ],
+    people: [],
     termsAccepted: false
   })
   const updateFormData = data => {
@@ -41,16 +49,12 @@ export const ActivityRegistration = ({
       setCurrentStep(currentStep - 1)
     }
   }
-
-  {/* Horarios hardcoded, cambiar si se agrega backend */}
-  const getTimeDisplay = timeSlotId => {
-    const timeMap = {
-      morning: "09:00 AM",
-      noon: "12:00 PM",
-      afternoon: "03:00 PM",
-      evening: "06:00 PM"
-    }
-    return timeMap[timeSlotId] || timeSlotId
+  const minDate = new Date()
+  const maxDate = new Date()
+  maxDate.setMonth(maxDate.getMonth() + 1)
+  const filterDate = date => {
+    const day = date.getDay()
+    return day !== 2 && day !== 4
   }
 
   {/* Cambio de aspecto de la pagina dependiendo del "Step" o paso en el que se encuentre
@@ -58,7 +62,7 @@ export const ActivityRegistration = ({
     Case 2: pagina de inscripcion de cada participante
     Case 3: pagina de terminos y condiciones
     Case 4: pagina de confirmacion y retorno */}
-    
+
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -69,23 +73,70 @@ export const ActivityRegistration = ({
             </h2>
             <p className="text-gray-500 mt-2 mb-6">
               Bienvenido al formulario de inscripción de actividades de
-              EcoHarmony Park. Por favor, selecciona la actividad en la que
-              deseas participar, el horario que prefieras y el número de
-              participantes. Asegúrate de tener los datos de todos los
-              participantes antes de continuar.
+              EcoHarmony Park. Para comenzar, indica el número de participantes
+              que desean realizar la actividad.
             </p>
-            <ActivitySelection
-              selectedActivity={formData.activity}
-              onSelectActivity={activity =>
+            <NumberOfParticipants
+              selectedCount={formData.participants}
+              onSelectCount={count => {
+                const people = Array(count)
+                  .fill(0)
+                  .map(() => ({
+                    firstName: "",
+                    lastName: "",
+                    dni: "",
+                    age: "",
+                    size: ""
+                  }))
                 updateFormData({
-                  activity
+                  participants: count,
+                  people
                 })
-              }
+              }}
             />
+            {formData.participants > 0 && (
+              <div className="mt-8">
+                <h3 className="text-gray-700 mb-3 flex items-center">
+                  <CalendarIcon className="w-5 h-5 mr-2 text-green-600" />
+                  Selecciona una fecha:
+                </h3>
+                <div className="relative">
+                  <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <DatePicker
+                    selected={formData.selectedDate}
+                    onChange={date =>
+                      updateFormData({
+                        selectedDate: date
+                      })
+                    }
+                    minDate={minDate}
+                    maxDate={maxDate}
+                    filterDate={filterDate}
+                    dateFormat="dd/MM/yyyy"
+                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500"
+                    placeholderText="Selecciona una fecha"
+                  />
+                </div>
+              </div>
+            )}
+            {formData.selectedDate && (
+              <ActivitySelection
+                selectedActivity={formData.activity}
+                requiredSpots={formData.participants}
+                onSelectActivity={activity =>
+                  updateFormData({
+                    activity,
+                    timeSlot: "" // Resetea time slot cuando se cambia de actividad
+                  })
+                }
+              />
+            )}
             {formData.activity && (
               <TimeSelection
+                selectedDate={formData.selectedDate}
                 selectedActivity={formData.activity}
                 selectedTime={formData.timeSlot}
+                requiredSpots={formData.participants}
                 onSelectTime={timeSlot =>
                   updateFormData({
                     timeSlot
@@ -94,61 +145,15 @@ export const ActivityRegistration = ({
               />
             )}
             {formData.timeSlot && (
-              <div className="mt-8">
-                <h3 className="text-gray-700 mb-3">
-                  ¿Cuántas personas participarán?
-                </h3>
-                <div className="flex space-x-4">
-                  {[1, 2, 4, 6].map(num => (
-                    <button
-                      key={num}
-                      className={`py-3 w-24 border ${
-                        formData.participants === num
-                          ? "bg-green-600 text-white border-green-600"
-                          : "bg-white text-gray-700 border-gray-300"
-                      }`}
-                      onClick={() => {
-                        const people = Array(num)
-                          .fill(0)
-                          .map((_, i) =>
-                            i < formData.people.length
-                              ? formData.people[i]
-                              : {
-                                  name: "",
-                                  lastName: "",
-                                  dni: "",
-                                  age: "",
-                                  size: ""
-                                }
-                          )
-                        updateFormData({
-                          participants: num,
-                          people
-                        })
-                      }}
-                    >
-                      {num}
-                    </button>
-                  ))}
-                </div>
-                <p className="text-xs text-gray-500 mt-2">
-                  Recomendamos grupos de entre 1 y 6 personas para una mejor
-                  experiencia.
-                </p>
+              <div className="mt-8 flex justify-end">
+                <button
+                  onClick={handleNext}
+                  className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+                >
+                  Continuar
+                </button>
               </div>
             )}
-            {formData.activity &&
-              formData.timeSlot &&
-              formData.participants > 0 && (
-                <div className="mt-8 flex justify-end">
-                  <button
-                    onClick={handleNext}
-                    className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
-                  >
-                    Continuar
-                  </button>
-                </div>
-              )}
           </div>
         )
       case 2:
@@ -201,16 +206,8 @@ export const ActivityRegistration = ({
                   setFormData({
                     activity: "",
                     timeSlot: "",
-                    participants: 1,
-                    people: [
-                      {
-                        name: "",
-                        lastName: "",
-                        dni: "",
-                        age: "",
-                        size: ""
-                      }
-                    ],
+                    participants: 0,
+                    people: [],
                     termsAccepted: false
                   })
                 }}
