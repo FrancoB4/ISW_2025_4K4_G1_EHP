@@ -1,5 +1,8 @@
 {/* Componente que se encarga del formulario de cada participante */}
 import React from "react"
+import DatePicker from "react-datepicker"
+import { es } from "date-fns/locale"
+import { CalendarIcon } from "lucide-react"
 export const ParticipantForm = ({
   participants,
   activity,
@@ -20,16 +23,40 @@ export const ParticipantForm = ({
     const numericValue = value.replace(/[^0-9]/g, "")
     return numericValue.slice(0, 8)
   }
+  const calculateAge = birthDate => {
+    const today = new Date()
+    let age = today.getFullYear() - birthDate.getFullYear()
+    const m = today.getMonth() - birthDate.getMonth()
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--
+    }
+    return age
+  }
   const isFormValid = () => {
     return participants.every(
       p =>
         p.firstName.trim() !== "" &&
         p.lastName.trim() !== "" &&
         p.dni.trim() !== "" &&
-        p.age.trim() !== "" &&
-        (!requiresSize || p.size.trim() !== "")
+        p.birthDate !== null &&
+        (!requiresSize || p.size.trim() !== "") &&
+        (p.birthDate ? calculateAge(p.birthDate) <= 120 : true)
     )
   }
+  const maxDate = new Date()
+  const minDate = new Date()
+  minDate.setFullYear(maxDate.getFullYear() - 120)
+  const datePickerWrapperStyles = `
+    .react-datepicker-wrapper {
+      width: 100%;
+    }
+    .react-datepicker__input-container {
+      width: 100%;
+    }
+    .react-datepicker-popper {
+      z-index: 10;
+    }`
+    
   return (
     <div>
       <h2 className="text-2xl font-medium text-gray-700">
@@ -128,35 +155,38 @@ export const ParticipantForm = ({
                 )}
               </div>
 
-              {/* Campo Edad */}
+              {/* Campo Fecha de nacimiento */}
               <div>
                 <label
                   className="block text-gray-700 text-sm font-medium mb-2"
-                  htmlFor={`age-${index}`}
+                  htmlFor={`birthDate-${index}`}
                 >
-                  Edad
+                  Fecha de nacimiento
                 </label>
-                <input
-                  type="text"
-                  id={`age-${index}`}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500"
-                  value={person.age}
-                  onChange={e => {
-                    const value = e.target.value
-                      .replace(/[^0-9]/g, "")
-                      .slice(0, 3)
-                    const numValue = parseInt(value)
-                    if (value === "" || (numValue >= 0 && numValue <= 999)) {
-                      updateParticipant(index, "age", value)
+                <div className="relative w-full">
+                  <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 z-10" />
+                  <DatePicker
+                    selected={person.birthDate}
+                    onChange={date =>
+                      updateParticipant(index, "birthDate", date)
                     }
-                  }}
-                  placeholder="Edad"
-                  required
-                  maxLength={3}
-                />
-                {person.age && parseInt(person.age) > 120 && (
+                    dateFormat="dd/MM/yyyy"
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    showYearDropdown
+                    scrollableYearDropdown
+                    yearDropdownItemNumber={120}
+                    locale={es}
+                    placeholderText="Selecciona una fecha"
+                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 bg-white"
+                    wrapperClassName="w-full"
+                    popperClassName="datepicker-popper"
+                    dropdownMode="select"
+                  />
+                </div>
+                {person.birthDate && calculateAge(person.birthDate) > 120 && (
                   <p className="text-xs text-red-500 mt-1">
-                    La edad debe ser menor a 120 años
+                    La edad máxima permitida es 120 años
                   </p>
                 )}
               </div>

@@ -9,6 +9,8 @@ import { NumberOfParticipants } from "./NumberOfParticipants"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { CalendarIcon } from "lucide-react"
+
+// Pone pm y am a las horas
 const getTimeDisplay = time => {
   const [hours] = time.split(":")
   const hour = parseInt(hours, 10)
@@ -195,8 +197,14 @@ export const ActivityRegistration = ({
                 {formData.activity.charAt(0).toUpperCase() +
                   formData.activity.slice(1)}{" "}
                 para {formData.participants}{" "}
-                {formData.participants > 1 ? "personas" : "persona"} a las{" "}
-                {getTimeDisplay(formData.timeSlot)}.
+                {formData.participants > 1 ? "personas" : "persona"} el{" "}
+                {formData.selectedDate?.toLocaleDateString("es-ES", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+                })}{" "}
+                a las {getTimeDisplay(formData.timeSlot)}.
               </p>
             </div>
             <div className="mt-6 flex justify-end">
@@ -207,6 +215,7 @@ export const ActivityRegistration = ({
                     activity: "",
                     timeSlot: "",
                     participants: 0,
+                    selectedDate: null,
                     people: [],
                     termsAccepted: false
                   })
