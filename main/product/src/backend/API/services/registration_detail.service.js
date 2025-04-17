@@ -1,6 +1,6 @@
 import { RegistrationDetail } from "../models/registration_detail.js";
 
-export const bulkCreate = async(reg_id, visitors, clothingReq) => {
+export const bulkCreate = async(reg_id, visitors) => {
     let created = [];
 
     for (let i = 0; i < visitors.length; i++) {
@@ -33,7 +33,7 @@ export const create = async (reg_id, data) => {
         visitorName: data.visitorName,
         dni: data.dni,
         birthdate: data.birthdate,
-        clothingSize: data.clothingSize,
+        clothingSize: data.clothingSize ? data.clothingSize : "",
         registration_id: reg_id
     });
     
