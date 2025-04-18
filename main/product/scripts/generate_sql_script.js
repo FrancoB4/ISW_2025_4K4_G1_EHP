@@ -12,6 +12,20 @@ const hoy = new Date();
 const fin = new Date();
 fin.setMonth(hoy.getMonth() + 2);
 
+function formatDate(date) {
+  const pad = (n) => n.toString().padStart(2, "0");
+
+  const yyyy = date.getFullYear();
+  const mm = pad(date.getMonth() + 1);
+  const dd = pad(date.getDate());
+
+  const hh = pad(date.getHours());
+  const mi = pad(date.getMinutes());
+  const ss = pad(date.getSeconds());
+
+  return `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}.000 +00:00`;
+}
+
 for (let d = new Date(hoy); d <= fin; d.setDate(d.getDate() + 1)) {
   const dia = d.getDay(); // 0 = domingo, 1 = lunes, ..., 6 = sábado
   if (dia === 2 || dia === 4) continue; // Saltea martes (2) y jueves (4)
@@ -27,8 +41,8 @@ for (let d = new Date(hoy); d <= fin; d.setDate(d.getDate() + 1)) {
     actividades.forEach((act) => {
       horarios.push(
         `INSERT INTO Schedules (startDate, endDate, placesLeft, activity_id) VALUES (
-          '${startDate.toISOString()}',
-          '${endDate.toISOString()}',
+          '${formatDate(startDate)}',
+          '${formatDate(endDate)}',
           ${act.places},
           ${act.id}
         );`
