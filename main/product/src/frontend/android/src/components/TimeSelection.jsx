@@ -5,6 +5,7 @@ export const TimeSelection = ({
   selectedDate,
   selectedActivity,
   selectedTime,
+  selectedDayTime,
   requiredSpots,
   onSelectTime
 }) => {
@@ -44,7 +45,7 @@ export const TimeSelection = ({
                 : "opacity-50 cursor-not-allowed"
             }`}
             onClick={() =>
-              slot.isAvailable && onSelectTime(slot.id)
+              slot.isAvailable && onSelectTime(slot.id, slot.time)
             }
             disabled={!slot.isAvailable}
           >

@@ -11,18 +11,6 @@ import "react-datepicker/dist/react-datepicker.css"
 import { CalendarIcon } from "lucide-react"
 import axios from 'axios';
 
-// Pone pm y am a las horas
-const getTimeDisplay = time => {
-  const [hours] = time.split(":")
-  const hour = parseInt(hours, 10)
-  if (hour < 12) {
-    return `${time} AM`
-  } else if (hour === 12) {
-    return `${time} PM`
-  } else {
-    return `${hour - 12}:00 PM`
-  }
-}
 export const ActivityRegistration = ({
   currentStep,
   setCurrentStep,
@@ -33,6 +21,7 @@ export const ActivityRegistration = ({
     activity: "",
     selectedDate: null,
     timeSlot: "",
+    dayTime: "",
     people: [],
     termsAccepted: false
   })
@@ -124,7 +113,8 @@ export const ActivityRegistration = ({
                 updateFormData({
                   participants: count,
                   people,
-                  timeSlot: ""
+                  timeSlot: "",
+                  dayTime: "",
                 })
               }}
             />
@@ -141,7 +131,8 @@ export const ActivityRegistration = ({
                     onChange={date =>{
                       updateFormData({
                         selectedDate: date,
-                        timeSlot: ""
+                        timeSlot: "",
+                        dayTime: "",
                       })
                     }}
                     minDate={minDate}
@@ -162,7 +153,8 @@ export const ActivityRegistration = ({
                 onSelectActivity={activity =>
                   updateFormData({
                     activity,
-                    timeSlot: "" // Resetea time slot cuando se cambia de actividad
+                    timeSlot: "",
+                    dayTime: "", // Resetea time slot cuando se cambia de actividad
                   })
                 }
               />
@@ -173,10 +165,12 @@ export const ActivityRegistration = ({
                 selectedDate={formData.selectedDate}
                 selectedActivity={formData.activity}
                 selectedTime={formData.timeSlot}
+                selectedDayTime={formData.dayTime}
                 requiredSpots={formData.participants}
-                onSelectTime={timeSlot => {
+                onSelectTime={(timeSlot, dayTime) => {
                   updateFormData({
-                    timeSlot
+                    timeSlot,
+                    dayTime
                   })
                   //console.log(timeSlot)
                 }}
@@ -212,6 +206,7 @@ export const ActivityRegistration = ({
         return (
           <TermsAndConditions
             activity={formData.activity}
+            formData={formData}
             termsAccepted={formData.termsAccepted}
             onAccept={termsAccepted =>
               updateFormData({
@@ -240,7 +235,7 @@ export const ActivityRegistration = ({
                   month: "long",
                   day: "numeric"
                 })}{" "}
-                a las {getTimeDisplay(formData.timeSlot)}.
+                a las {formData.dayTime}.
               </p>
             </div>
             <div className="mt-6 flex justify-end">

@@ -1,12 +1,29 @@
 {/* Componente que se encarga de mostrar los términos y condiciones */}
 import React from "react"
+import axios from "axios"
+
 export const TermsAndConditions = ({
   activity,
   termsAccepted,
+  formData,
   onAccept,
   onNext,
   onBack
 }) => {
+  const createRegistration = async (data) => {
+
+    const body = {
+
+    }
+
+    try {
+      const res = await axios.post("http://localhost:3001/api/registrations", body);
+      console.log("Respuesta del servidor:", res.data);
+    } catch (error) {
+      console.error("Error al enviar el formulario:", error);
+    }
+  }
+
   {/* Términos y condiciones harcoded, usa switch case dependiendo de la actividad seleccionada, cambiar si se usa backend */}
   const getTermsContent = () => {
     switch (activity) {
@@ -156,7 +173,10 @@ export const TermsAndConditions = ({
           Atrás
         </button>
         <button
-          onClick={onNext}
+          onClick={()=>{
+            createRegistration(formData);
+            onNext();
+          }}
           disabled={!termsAccepted}
           className={`px-6 py-2 rounded ${
             termsAccepted

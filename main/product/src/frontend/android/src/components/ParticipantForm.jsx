@@ -11,6 +11,7 @@ export const ParticipantForm = ({
   onBack
 }) => {
   const requiresSize = ["tirolesa", "palestra"].includes(activity)
+  
   const updateParticipant = (index, field, value) => {
     const updatedParticipants = [...participants]
     updatedParticipants[index] = {
@@ -135,11 +136,7 @@ export const ParticipantForm = ({
                 <input
                   type="text"
                   id={`dni-${index}`}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 ${
-                    person.dni.length === 8
-                      ? "border-green-500"
-                      : "border-gray-300"
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500`}
                   value={person.dni}
                   onChange={e =>
                     updateParticipant(index, "dni", validateDNI(e.target.value))
