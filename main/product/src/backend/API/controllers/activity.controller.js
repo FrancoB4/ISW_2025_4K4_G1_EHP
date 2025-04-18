@@ -1,4 +1,7 @@
 import { getAll, create, getById } from "../services/activity.service.js";
+import Op from "sequelize";
+import { Activity } from "../models/activity.js";
+import { Schedule } from "../models/schedule.js";
 
 // export const getAllActivities = async (_, res) => {
 //     try {
@@ -44,26 +47,23 @@ export const getOne = async (req, res) => {
     }
 }
 
-const { Op } = require("sequelize");
-const { Actividad, Schedule } = require("../models");
-
 export const getAllActivities = async (req, res) => {
     try {
         const { fecha, personas } = req.query;
 
         let actividades;
-        const resultado = {};
-
-        const fechaISO = fechaFormateada(fecha);
+        let resultado = {};
 
         if (fecha && personas) {
-            actividades = await Actividad.findAll({
+            const fechaISO = fechaFormateada(fecha);
+
+            actividades = await Activity.findAll({
                 include: {
                     model: Schedule,
                     as: "schedules",
                     where: {
                         startDate: {
-                            [Op.like]: `${fechaISO}%`
+                            [Op.like]: `^${fechaISO}`
                         }
                     },
                     required: true
@@ -89,7 +89,7 @@ export const getAllActivities = async (req, res) => {
                 };
             });
         }else{
-            actividades = await Actividad.findAll({
+            actividades = await Activity.findAll({
                 include: {
                     model: Schedule,
                     as: "schedules"

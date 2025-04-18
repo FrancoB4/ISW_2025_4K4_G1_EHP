@@ -28,6 +28,7 @@ export const getById = async (id) => {
         const activity = await Activity.findByPk(id, {
             include:{
                 model: Schedule,
+                as: "schedule",
                 attributes: ['id', 'startDate', 'endDate', 'placesLeft']
             }
         });
