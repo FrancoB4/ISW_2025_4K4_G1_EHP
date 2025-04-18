@@ -123,7 +123,8 @@ export const ActivityRegistration = ({
                   }))
                 updateFormData({
                   participants: count,
-                  people
+                  people,
+                  timeSlot: ""
                 })
               }}
             />
@@ -139,7 +140,8 @@ export const ActivityRegistration = ({
                     selected={formData.selectedDate}
                     onChange={date =>{
                       updateFormData({
-                        selectedDate: date
+                        selectedDate: date,
+                        timeSlot: ""
                       })
                     }}
                     minDate={minDate}
@@ -167,15 +169,17 @@ export const ActivityRegistration = ({
             )}
             {formData.activity && (
               <TimeSelection
+                activities={activities}
                 selectedDate={formData.selectedDate}
                 selectedActivity={formData.activity}
                 selectedTime={formData.timeSlot}
                 requiredSpots={formData.participants}
-                onSelectTime={timeSlot =>
+                onSelectTime={timeSlot => {
                   updateFormData({
                     timeSlot
                   })
-                }
+                  //console.log(timeSlot)
+                }}
               />
             )}
             {formData.timeSlot && (
