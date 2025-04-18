@@ -43,7 +43,9 @@ export const sendRegistrationConfirmationEmail = async (email, registrationId, a
     return response;
 }
 
-// const a = sendRegistrationConfirmationEmail("francobonfigliovazquez@gmail.com", 1, "Polo", Date.now(), [
+// const a = await sendRegistrationConfirmationEmail("francobonfigliovazquez@gmail.com", 1, "Polo", Date.now(), [
 //     { name: "Ejemplo", dni: 12345678, clothing_size: "M", age: 19 },
 //     { name: "Ejemplo 2", dni: 87654321, clothing_size: "L", age: 25 }
 // ]);
+
+// console.log(a.status)

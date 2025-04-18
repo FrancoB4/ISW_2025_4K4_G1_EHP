@@ -61,11 +61,11 @@ export const createRegistrations = async (req, res) => {
     try {
       const parsedRegistrations = parseDataForRegistrationEmail(reg_detail);
       const emailRes = await sendRegistrationConfirmationEmail(data.email, reg_id, selectedActivity.name, selectedSchedule.startDate, parsedRegistrations);
-      if (emailRes.status_code == 200) {
+      if (emailRes.status == 200) {
         console.log('[Registration | email] Success!')
       }
       else {
-        console.log('[Registration | email] Failed!', emailRes.status_code ? emailRes.status_code : emailRes)
+        console.log('[Registration | email] Failed!', emailRes.status, emailRes.statusText)
       }
     }
     catch (error) {
