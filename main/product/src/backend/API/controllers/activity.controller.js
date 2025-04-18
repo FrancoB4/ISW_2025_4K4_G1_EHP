@@ -51,32 +51,36 @@ export const getAllActivities = async (req, res) => {
     try {
         const { fecha, personas } = req.query;
 
-        let actividades;
-        let resultado = {};
+        let activities;
+        let result = {};
 
         if (fecha && personas) {
-            const fechaISO = fechaFormateada(fecha);
+            const fechaISO = formatedDate(fecha);
 
-            actividades = await Activity.findAll({
+            activities = await Activity.findAll({
                 include: {
                     model: Schedule,
-                    as: "schedules",
+                    as: "schedule",
+                    attributes: ['id', 'startDate', 'endDate', 'placesLeft'],
                     where: {
                         startDate: {
-                            [Op.like]: `^${fechaISO}`
+                            [Op.like]: `2025-04-18T09:00:00.000Z`
                         }
                     },
-                    required: true
+                    required: false
                 }
             });
 
-            actividades.forEach(actividad => {
-                const horarios = actividades.schedules;
-                const horariosDisponibles = actividad.schedules.filter(schedule => schedule.placesLeft >= parseInt(personas));
+            activities.forEach(act => {
+                console.log(act)
+                const horarios = act.schedules;
+                console.log(horarios);
+                const horariosDisponibles = act.schedules.filter(schedule => schedule.placesLeft >= parseInt(personas));
+                //console.log(horariosDisponibles);
 
-                resultado[actividad.name] = {
+                result[act.name] = {
                     cant_horarios_disponibles: horariosDisponibles.length,
-                    cupo_maximo: actividad.places,
+                    cupo_maximo: act.places,
                     horarios: horarios.map(horario => {
                         const hora = new Date(horario.startDate).toISOString().slice(11, 16); // HH:mm
                         return {
@@ -89,17 +93,17 @@ export const getAllActivities = async (req, res) => {
                 };
             });
         }else{
-            actividades = await Activity.findAll({
+            activities = await Activity.findAll({
                 include: {
                     model: Schedule,
-                    as: "schedules"
+                    as: "schedule"
                 }
             });
 
-            resultado = actividades;
+            result = activities;
         }
 
-        res.json(resultado);
+        res.json(result);
     } catch (e) {
         res.status(500).json({
             error: e.message
@@ -107,7 +111,7 @@ export const getAllActivities = async (req, res) => {
     }
 };
 
-const fechaFormateada = (fechaStr) => {
+const formatedDate = (fechaStr) => {
     const [dd, mm, yyyy] = fechaStr.split('/');
     return `${yyyy}-${mm}-${dd}`;
 };
