@@ -40,4 +40,4 @@ export const Schedule = sequelize.define(
 );
 
 Schedule.belongsTo(Activity, { foreignKey: 'activity_id' });
-Activity.hasMany(Schedule, { foreignKey: 'activity_id', hooks: true, as: 'schedule' });
+Activity.hasMany(Schedule, { foreignKey: 'activity_id', hooks: true });

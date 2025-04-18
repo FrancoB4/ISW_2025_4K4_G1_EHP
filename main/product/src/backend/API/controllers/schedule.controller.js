@@ -1,7 +1,5 @@
 import { getAll, create } from "../services/schedule.service.js";
 import { getById } from "../services/activity.service.js";
-import { Schedule } from "../models/schedule.js";
-import { Op } from "sequelize";
 
 export const getAllSchedule = async (_, res) => {
     const schedule = await getAll();
@@ -31,16 +29,4 @@ export const createSchedule = async (req, res) => {
         res.status(500).json({ message: 'Error', data: {} });
     }
     return res;
-}
-
-
-export const asd = async (req, res) =>{
-    const schedules = await Schedule.findAll({
-        where: {
-          startDate: {
-            [Op.like]: `2025-04-18T09:00:00.000Z`
-          }
-        }
-      });
-    console.log(schedules)
 }

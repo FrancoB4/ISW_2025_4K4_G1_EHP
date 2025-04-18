@@ -1,18 +1,8 @@
 import { getAll, create, getById } from "../services/activity.service.js";
-import Op from "sequelize";
+import { Op } from "sequelize";
 import { Activity } from "../models/activity.js";
 import { Schedule } from "../models/schedule.js";
-
-// export const getAllActivities = async (_, res) => {
-//     try {
-//         const activities = await getAll();
-//         res.json(activities);
-//     } catch (error) {
-//         res.status(500).send({
-//             error: error.message
-//         })
-//     }
-// }
+import moment from 'moment';
 
 export const createActivity = async (req, res) => {
     const data = req.body;
@@ -49,22 +39,22 @@ export const getOne = async (req, res) => {
 
 export const getAllActivities = async (req, res) => {
     try {
-        const { fecha, personas } = req.query;
+        const { fecha, personas } = req.query; //fecha debe ingresar en formato dd/mm/aaaa
 
-        let activities;
         let result = {};
 
         if (fecha && personas) {
             const fechaISO = formatedDate(fecha);
+            const startOfDay = moment(fechaISO).startOf('day').toISOString();
+            const endOfDay = moment(fechaISO).endOf('day').toISOString();
 
-            activities = await Activity.findAll({
+            const activities = await Activity.findAll({
                 include: {
                     model: Schedule,
-                    as: "schedule",
                     attributes: ['id', 'startDate', 'endDate', 'placesLeft'],
                     where: {
                         startDate: {
-                            [Op.like]: `2025-04-18T09:00:00.000Z`
+                            [Op.between]: [startOfDay, endOfDay]
                         }
                     },
                     required: false
@@ -72,11 +62,9 @@ export const getAllActivities = async (req, res) => {
             });
 
             activities.forEach(act => {
-                console.log(act)
-                const horarios = act.schedules;
-                console.log(horarios);
-                const horariosDisponibles = act.schedules.filter(schedule => schedule.placesLeft >= parseInt(personas));
-                //console.log(horariosDisponibles);
+
+                const horarios = act.Schedules;
+                const horariosDisponibles = act.Schedules.filter(schedule => schedule.placesLeft >= parseInt(personas));
 
                 result[act.name] = {
                     cant_horarios_disponibles: horariosDisponibles.length,
@@ -93,14 +81,11 @@ export const getAllActivities = async (req, res) => {
                 };
             });
         }else{
-            activities = await Activity.findAll({
+            result = await Activity.findAll({
                 include: {
-                    model: Schedule,
-                    as: "schedule"
+                    model: Schedule
                 }
             });
-
-            result = activities;
         }
 
         res.json(result);
