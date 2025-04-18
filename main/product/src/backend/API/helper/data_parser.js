@@ -1,4 +1,4 @@
-import { Registration } from "../models/registration";
+import { Registration } from "../models/registration.js";
 
 export const parseDataForRegistrationEmail = (registrations) => {
     var parsedRegistrations = [];

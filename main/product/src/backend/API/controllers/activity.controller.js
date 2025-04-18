@@ -41,7 +41,7 @@ export const getAllActivities = async (req, res) => {
     try {
         const { fecha, personas } = req.query; //fecha debe ingresar en formato dd/mm/aaaa
 
-        let result = {};
+        let result = [];
 
         if (fecha && personas) {
             const fechaISO = formatedDate(fecha);
@@ -66,19 +66,24 @@ export const getAllActivities = async (req, res) => {
                 const horarios = act.Schedules;
                 const horariosDisponibles = act.Schedules.filter(schedule => schedule.placesLeft >= parseInt(personas));
 
-                result[act.name] = {
-                    cant_horarios_disponibles: horariosDisponibles.length,
-                    cupo_maximo: act.places,
-                    horarios: horarios.map(horario => {
-                        const hora = new Date(horario.startDate).toISOString().slice(11, 16); // HH:mm
-                        return {
-                            id: horario.id,
-                            hora,
-                            disponible: horario.placesLeft >= personas,
-                            cupos_restantes: horario.placesLeft
-                        };
-                    })
-                };
+                result.push(
+                    {
+                        id: act.name.toLowerCase(),
+                        name: act.name,
+                        description: act.description,
+                        available: horariosDisponibles.length,
+                        capacity: act.places,
+                        schedules: horarios.map(horario => {
+                            const time = new Date(horario.startDate).toISOString().slice(11, 16); // HH:mm
+                            return {
+                                id: horario.id,
+                                time,
+                                isAvailable: horario.placesLeft >= personas,
+                                placesLeft: horario.placesLeft
+                            };
+                        })
+                    }
+                );
             });
         }else{
             result = await Activity.findAll({

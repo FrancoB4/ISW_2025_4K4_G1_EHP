@@ -1,6 +1,6 @@
 {/* Parte principal de la pagina, maneja los estados  va cambiando entre las opciones, los otros components ayudan a este */}
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { ActivitySelection } from "./ActivitySelection"
 import { TimeSelection } from "./TimeSelection"
 import { ParticipantForm } from "./ParticipantForm"
@@ -9,6 +9,7 @@ import { NumberOfParticipants } from "./NumberOfParticipants"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { CalendarIcon } from "lucide-react"
+import axios from 'axios';
 
 // Pone pm y am a las horas
 const getTimeDisplay = time => {
@@ -35,6 +36,9 @@ export const ActivityRegistration = ({
     people: [],
     termsAccepted: false
   })
+
+  const [activities, setActivities] = useState([]);
+
   const updateFormData = data => {
     setFormData(prev => ({
       ...prev,
@@ -59,11 +63,38 @@ export const ActivityRegistration = ({
     return day !== 2 && day !== 4
   }
 
+  const formatDate = (selectedDate) => {
+    const date = new Date(selectedDate);
+
+    const dd = String(date.getDate()).padStart(2, '0');       // Asegura "01", "02", ..., "31"
+    const mm = String(date.getMonth() + 1).padStart(2, '0');  // Asegura "01", "02", ..., "12"
+    const yyyy = date.getFullYear();
+    
+    return `${dd}/${mm}/${yyyy}`;
+  }
+
+
   {/* Cambio de aspecto de la pagina dependiendo del "Step" o paso en el que se encuentre
     Case 1: paginia inicial de seleccion de actividad
     Case 2: pagina de inscripcion de cada participante
     Case 3: pagina de terminos y condiciones
     Case 4: pagina de confirmacion y retorno */}
+
+    useEffect(() => {
+      const { selectedDate, participants } = formData;
+
+      if (!selectedDate || !participants) return;
+      
+      const formattedDate = formatDate(selectedDate);
+
+      axios.get(`http://localhost:3001/api/activities?fecha=${formattedDate}&personas=${participants}`)
+        .then(res => {
+          setActivities(res.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }, [formData.selectedDate, formData.participants])
 
   const renderStep = () => {
     switch (currentStep) {
@@ -106,11 +137,11 @@ export const ActivityRegistration = ({
                   <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                   <DatePicker
                     selected={formData.selectedDate}
-                    onChange={date =>
+                    onChange={date =>{
                       updateFormData({
                         selectedDate: date
                       })
-                    }
+                    }}
                     minDate={minDate}
                     maxDate={maxDate}
                     filterDate={filterDate}
@@ -123,6 +154,7 @@ export const ActivityRegistration = ({
             )}
             {formData.selectedDate && (
               <ActivitySelection
+                activities={activities}
                 selectedActivity={formData.activity}
                 requiredSpots={formData.participants}
                 onSelectActivity={activity =>
