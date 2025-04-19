@@ -8,11 +8,11 @@ export const bulkCreate = async(reg_id, visitors) => {
           const visitor = visitors[i];
           const detail = await create(reg_id, visitor);
           created.push(detail);
+          
         } catch (error) {
           console.log('[RegistrationDetail | create] Error:', error);
         }
     }
-
     return created;
 }
 

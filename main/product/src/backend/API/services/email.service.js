@@ -23,8 +23,10 @@ export const sendEmail = async (templateId, templateParams) => {
  * @param {Number} registrationId: El id de la primer inscripción de las realizadas por el usuario.
  * @param {String} activity: El nombre de la actividad para la que se registra la inscripcion.
  * @param {Date} scheduleStartdate: La fecha de inicio del shcedule seleccionado para las inscripciones.
- * @param {Array<D>} registrations: Una lista de objetos, donde cada objeto representa una inscirpción. Cada inscripción debe tener los datos: name (nombre de la persona inscripta), actividad, horario.
- * @returns la respuesta a la petición de envío de mail. Si es 200 el mail se envió correctamente, en cualquier otro caso el mail no se envió.
+ * @param {Array<D>} registrations: Una lista de objetos, donde cada objeto representa una inscirpción. 
+ * Cada inscripción debe tener los datos: name (nombre de la persona inscripta), actividad, horario.
+ * @returns la respuesta a la petición de envío de mail. Si es 200 el mail se envió correctamente,
+ * en cualquier otro caso el mail no se envió.
  */
 
 export const sendRegistrationConfirmationEmail = async (email, registrationId, activity, scheduleStartdate, registrations) => {

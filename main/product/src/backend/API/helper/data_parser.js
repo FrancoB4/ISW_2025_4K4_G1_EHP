@@ -1,14 +1,14 @@
 import { Registration } from "../models/registration.js";
 
 export const parseDataForRegistrationEmail = (registrations) => {
-    var parsedRegistrations = [];
-    for (let i = 0; i < registrations.lenght; i++) {
+    let parsedRegistrations = [];
+    for (let i = 0; i < registrations.length; i++) {
         const registration = registrations[i];
-        let parsedRegistration = {
+        const parsedRegistration = {
             name: registration.visitorName,
             dni: registration.dni,
             clothing_size: registration.clothingSize,
-            age: (Date.now().getFullYear() - registration.birthdate.getFullYear())
+            age: (new Date().getFullYear() - new Date(registration.birthdate).getFullYear())
         };
         parsedRegistrations.push(parsedRegistration);
     };

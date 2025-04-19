@@ -31,7 +31,6 @@ export const getById = async (id) => {
                 attributes: ['id', 'startDate', 'endDate', 'placesLeft']
             }
         });
-        console.log(activity);
         return activity
 
     } catch (error) {
