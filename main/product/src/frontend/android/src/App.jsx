@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import { ProgressBar } from "./components/ProgressBar"
 import { ActivityRegistration } from "./components/ActivityRegistration"
-export function App() {
+export function App({
+  emailLogin
+}) {
   const [currentStep, setCurrentStep] = useState(1)
   const totalSteps = 4
   return (
@@ -44,6 +46,7 @@ export function App() {
       {/* Contenido Principal */}
       <main className="max-w-4xl mx-auto py-8 px-4">
         <ActivityRegistration
+          emailLogin={emailLogin}
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
           totalSteps={totalSteps}

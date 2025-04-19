@@ -12,6 +12,7 @@ import { CalendarIcon } from "lucide-react"
 import axios from 'axios';
 
 export const ActivityRegistration = ({
+  emailLogin,
   currentStep,
   setCurrentStep,
   totalSteps
@@ -37,11 +38,13 @@ export const ActivityRegistration = ({
   const handleNext = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1)
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1)
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
   const minDate = new Date()
@@ -207,6 +210,7 @@ export const ActivityRegistration = ({
           <TermsAndConditions
             activity={formData.activity}
             formData={formData}
+            emailLogin={emailLogin}
             termsAccepted={formData.termsAccepted}
             onAccept={termsAccepted =>
               updateFormData({

@@ -6,14 +6,30 @@ export const TermsAndConditions = ({
   activity,
   termsAccepted,
   formData,
+  emailLogin,
   onAccept,
   onNext,
   onBack
 }) => {
-  const createRegistration = async (data) => {
 
+  const visitorsParser = (visitors) => {
+    let parsedVisitors = [];
+    visitors.forEach(v => {
+      parsedVisitors.push({
+        visitorName: `${v.firstName} ${v.lastName}`,
+        dni: v.dni,
+        birthdate: v.birthDate,
+        clothingSize: v.size
+      })
+    });
+    return parsedVisitors;
+  }
+
+  const createRegistration = async (data, email) => {
     const body = {
-
+      "schedule_id": data.timeSlot,
+      "email": email,
+      "visitors": visitorsParser(data.people)
     }
 
     try {
@@ -174,7 +190,7 @@ export const TermsAndConditions = ({
         </button>
         <button
           onClick={()=>{
-            createRegistration(formData);
+            createRegistration(formData, emailLogin);
             onNext();
           }}
           disabled={!termsAccepted}
