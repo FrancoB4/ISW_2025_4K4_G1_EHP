@@ -21,7 +21,7 @@ export const TimeSelection = ({
 
   return (
     <div className="mt-8">
-      <h3 className="text-gray-700 mb-3">
+      <h3 className="text-primary-dark font-semibold mb-3">
         Selecciona un horario para el{" "}
         {selectedDate.toLocaleDateString("es-ES", {
           weekday: "long",
@@ -37,11 +37,11 @@ export const TimeSelection = ({
             key={slot.id}
             className={`py-3 text-center border rounded-md ${
               selectedTime === slot.id
-                ? "bg-green-600 text-white border-green-600"
+                ? "bg-primary-sea text-white border-primary-sea"
                 : "bg-white text-gray-700 border-gray-300"
             } ${
               slot.isAvailable
-                ? "hover:border-green-600"
+                ? "hover:border-primary-sea"
                 : "opacity-50 cursor-not-allowed"
             }`}
             onClick={() =>

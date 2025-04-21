@@ -1,3 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* Aplicar Montserrat a todo el sitio */
+@layer base {
+  html {
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+  button {
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+  input, select {
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+}
+
+/* Estilos para el DatePicker */
+.react-datepicker {
+  font-family: 'Montserrat', system-ui, sans-serif !important;
+}
+.react-datepicker-wrapper {
+  width: 100%;
+}
+.react-datepicker__input-container {
+  width: 100%;
+}
+.react-datepicker-popper {
+  z-index: 10;
+}

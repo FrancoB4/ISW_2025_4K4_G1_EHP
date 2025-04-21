@@ -10,7 +10,7 @@ export const ParticipantForm = ({
   onNext,
   onBack
 }) => {
-  const requiresSize = ["tirolesa", "palestra"].includes(activity)
+  const requiresSize = ["tirolesa", "palestra", "jardineria"].includes(activity)
   
   const updateParticipant = (index, field, value) => {
     const updatedParticipants = [...participants]
@@ -60,7 +60,8 @@ export const ParticipantForm = ({
     
   return (
     <div>
-      <h2 className="text-2xl font-medium text-gray-700">
+      <style>{`{datePickerWrapperStyles}`}</style>
+      <h2 className="text-2xl font-semibold text-primary-dark">
         Datos de los Participantes
       </h2>
       <p className="text-gray-500 mt-2 mb-6">
@@ -74,7 +75,7 @@ export const ParticipantForm = ({
             className="p-6 border border-gray-200 rounded-lg bg-white shadow-sm"
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-2">
-              <h3 className="text-lg font-medium text-gray-700">
+              <h3 className="text-lg font-semibold text-primary-dark">
                 Participante {index + 1}
               </h3>
               <span className="text-sm text-gray-500 whitespace-nowrap">
@@ -86,7 +87,7 @@ export const ParticipantForm = ({
               {/* Campo Nombre */}
               <div>
                 <label
-                  className="block text-gray-700 text-sm font-medium mb-2"
+                  className="block text-primary-dark text-sm font-medium mb-2"
                   htmlFor={`firstName-${index}`}
                 >
                   Nombre
@@ -94,7 +95,7 @@ export const ParticipantForm = ({
                 <input
                   type="text"
                   id={`firstName-${index}`}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-sea"
                   value={person.firstName}
                   onChange={e =>
                     updateParticipant(index, "firstName", e.target.value)
@@ -107,7 +108,7 @@ export const ParticipantForm = ({
               {/* Campo Apellido */}
               <div>
                 <label
-                  className="block text-gray-700 text-sm font-medium mb-2"
+                  className="block text-primary-dark text-sm font-medium mb-2"
                   htmlFor={`lastName-${index}`}
                 >
                   Apellido
@@ -115,7 +116,7 @@ export const ParticipantForm = ({
                 <input
                   type="text"
                   id={`lastName-${index}`}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-sea"
                   value={person.lastName}
                   onChange={e =>
                     updateParticipant(index, "lastName", e.target.value)
@@ -128,7 +129,7 @@ export const ParticipantForm = ({
               {/* Campo DNI */}
               <div>
                 <label
-                  className="block text-gray-700 text-sm font-medium mb-2"
+                  className="block text-primary-dark text-sm font-medium mb-2"
                   htmlFor={`dni-${index}`}
                 >
                   DNI (8 dígitos)
@@ -136,7 +137,16 @@ export const ParticipantForm = ({
                 <input
                   type="text"
                   id={`dni-${index}`}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500`}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-primary-sea ${
+
+                    person.dni.length === 8
+
+                      ? "border-primary-sea"
+
+                      : "border-gray-300"
+
+                  }`}
+
                   value={person.dni}
                   onChange={e =>
                     updateParticipant(index, "dni", validateDNI(e.target.value))
@@ -155,7 +165,7 @@ export const ParticipantForm = ({
               {/* Campo Fecha de nacimiento */}
               <div>
                 <label
-                  className="block text-gray-700 text-sm font-medium mb-2"
+                  className="block text-primary-dark text-sm font-medium mb-2"
                   htmlFor={`birthDate-${index}`}
                 >
                   Fecha de nacimiento
@@ -175,7 +185,7 @@ export const ParticipantForm = ({
                     yearDropdownItemNumber={120}
                     locale={es}
                     placeholderText="Selecciona una fecha"
-                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 bg-white"
+                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-sea bg-white"
                     wrapperClassName="w-full"
                     popperClassName="datepicker-popper"
                     dropdownMode="select"
@@ -192,14 +202,14 @@ export const ParticipantForm = ({
               {requiresSize && (
                 <div className="md:col-span-2">
                   <label
-                    className="block text-gray-700 text-sm font-medium mb-2"
+                    className="block text-primary-dark text-sm font-medium mb-2"
                     htmlFor={`size-${index}`}
                   >
                     Talla de vestimenta
                   </label>
                   <select
                     id={`size-${index}`}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-sea"
                     value={person.size}
                     onChange={e =>
                       updateParticipant(index, "size", e.target.value)
@@ -230,9 +240,9 @@ export const ParticipantForm = ({
         <button
           onClick={onNext}
           disabled={!isFormValid()}
-          className={`px-6 py-2 rounded ${
+          className={`px-6 py-2 rounded transition-colors${
             isFormValid()
-              ? "bg-green-600 text-white hover:bg-green-700"
+              ? "bg-primary-sea text-white hover:bg-primary-forest"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >

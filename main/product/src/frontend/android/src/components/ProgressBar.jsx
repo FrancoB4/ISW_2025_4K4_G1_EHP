@@ -24,7 +24,7 @@ export const ProgressBar = ({ currentStep, totalSteps }) => {
       <div className="flex justify-between relative">
         <div className="absolute top-3 left-0 right-0 h-0.5 bg-gray-200">
           <div
-            className="h-full bg-green-600 transition-all duration-300"
+            className="h-full bg-primary-sea transition-all duration-300"
             style={{
               width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`
             }}
@@ -34,7 +34,7 @@ export const ProgressBar = ({ currentStep, totalSteps }) => {
           <div key={index} className="flex flex-col items-center relative z-10">
             <div
               className={`h-6 w-6 rounded-full flex items-center justify-center ${
-                currentStep >= step.step ? "bg-green-600" : "bg-gray-200"
+                currentStep >= step.step ? "bg-primary-sea" : "bg-gray-200"
               } transition-colors duration-300`}
             >
               {currentStep > step.step ? (
@@ -61,7 +61,7 @@ export const ProgressBar = ({ currentStep, totalSteps }) => {
                 </span>
               )}
             </div>
-            <span className="text-xs mt-2 text-gray-600">{step.name}</span>
+            <span className="text-xs mt-2 text-primary-dark font-medium">{step.name}</span>
           </div>
         ))}
       </div>

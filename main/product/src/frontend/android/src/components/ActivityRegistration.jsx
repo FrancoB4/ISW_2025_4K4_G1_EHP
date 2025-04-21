@@ -93,7 +93,7 @@ export const ActivityRegistration = ({
       case 1:
         return (
           <div>
-            <h2 className="text-2xl font-medium text-gray-700">
+            <h2 className="text-2xl font-semibold text-primary-dark">
               Formulario de Inscripción
             </h2>
             <p className="text-gray-500 mt-2 mb-6">
@@ -124,7 +124,7 @@ export const ActivityRegistration = ({
             {formData.participants > 0 && (
               <div className="mt-8">
                 <h3 className="text-gray-700 mb-3 flex items-center">
-                  <CalendarIcon className="w-5 h-5 mr-2 text-green-600" />
+                  <CalendarIcon className="w-5 h-5 mr-2 text-primary-sea" />
                   Selecciona una fecha:
                 </h3>
                 <div className="relative">
@@ -142,7 +142,7 @@ export const ActivityRegistration = ({
                     maxDate={maxDate}
                     filterDate={filterDate}
                     dateFormat="dd/MM/yyyy"
-                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500"
+                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-primary-sea"
                     placeholderText="Selecciona una fecha"
                   />
                 </div>
@@ -183,7 +183,7 @@ export const ActivityRegistration = ({
               <div className="mt-8 flex justify-end">
                 <button
                   onClick={handleNext}
-                  className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+                  className="bg-primary-sea text-white px-6 py-2 rounded hover:bg-primary-forest transition-colors"
                 >
                   Continuar
                 </button>
@@ -224,8 +224,8 @@ export const ActivityRegistration = ({
       case 4:
         return (
           <div>
-            <h2 className="text-2xl font-medium text-gray-700">Confirmación</h2>
-            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mt-4">
+            <h2 className="text-2xl font-semibold text-primary-dark">Confirmación</h2>
+            <div className="bg-primary-sea/10 border border-primary-sea text-primary-dark px-4 py-3 rounded mt-4">
               <p>¡Registro completado con éxito!</p>
               <p className="mt-2">
                 Has reservado la actividad{" "}
@@ -255,7 +255,7 @@ export const ActivityRegistration = ({
                     termsAccepted: false
                   })
                 }}
-                className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+                className="bg-primary-sea text-white px-6 py-2 rounded hover:bg-primary-forest transition-colors"
               >
                 Registrar otra actividad
               </button>

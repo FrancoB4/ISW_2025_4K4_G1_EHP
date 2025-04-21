@@ -48,7 +48,7 @@ export const ActivitySelection = ({
   // ]
   return (
     <div className="mt-8">
-      <h3 className="text-gray-700 mb-3">
+      <h3 className="text-primary-dark font-semibold mb-3">
         Actividades disponibles para {requiredSpots}{" "}
         {requiredSpots === 1 ? "persona" : "personas"}:
       </h3>
@@ -64,27 +64,27 @@ export const ActivitySelection = ({
           return (
             <button
               key={activity.id}
-              className={`p-4 border rounded-md flex items-start ${
+              className={`p-4 border rounded-md flex items-start transition-colors${
                 selectedActivity === activity.id
-                  ? "border-green-600 bg-green-50"
+                  ? "border-primary-sea bg-primary-sea/10"
                   : "border-gray-300"
               } ${
                 !isAvailable
                   ? "opacity-50 cursor-not-allowed"
-                  : "hover:border-green-600"
+                  : "hover:border-primary-sea"
               }`}
               onClick={() => isAvailable && onSelectActivity(activity.id)}
               disabled={!isAvailable}
             >
-              <Icon className="h-6 w-6 mr-3 text-green-600 flex-shrink-0" />
+              <Icon className="h-6 w-6 mr-3 text-primary-sea flex-shrink-0" />
               <div className="flex-1 text-left">
-                <div className="font-medium">{activity.name}</div>
+                <div className="font-semibold text-primary-dark">{activity.name}</div>
                 <div className="text-sm text-gray-500">
                   {activity.description}
                 </div>
                 <div className="text-sm mt-1">
                   {isAvailable ? (
-                    <span className="text-green-600">
+                    <span className="text-primary-sea">
                       {activity.available} horarios disponibles
                     </span>
                   ) : (
@@ -95,7 +95,7 @@ export const ActivitySelection = ({
                 </div>
               </div>
               {selectedActivity === activity.id && (
-                <div className="text-green-600 ml-2">
+                <div className="text-primary-sea ml-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"

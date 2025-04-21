@@ -87,9 +87,9 @@ export const Calendar = ({ selectedDate, onSelectDate }) => {
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg flex items-center focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg flex items-center focus:outline-none focus:ring-2 focus:ring-primary-sea focus:border-transparent"
         >
-          <CalendarIcon className="h-5 w-5 text-gray-400 mr-2" />
+          <CalendarIcon className="h-5 w-5 text-primary-sea mr-2" />
           <span className="flex-1 text-left">
             {selectedDate
               ? format(selectedDate, "d 'de' MMMM, yyyy", {
@@ -156,16 +156,16 @@ export const Calendar = ({ selectedDate, onSelectDate }) => {
                     ${
                       disabled
                         ? "cursor-not-allowed bg-gray-50 text-gray-300"
-                        : "hover:bg-green-50"
+                        : "hover:bg-primary-sea/10"
                     }
                     ${
                       isSelected
-                        ? "bg-green-600 text-white hover:bg-green-700"
+                        ? "bg-primary-sea text-white hover:bg-primary-forest"
                         : ""
                     }
                     ${
                       isToday(day) && !isSelected
-                        ? "border-2 border-green-600"
+                        ? "border-2 border-primary-sea"
                         : ""
                     }
                   `}
@@ -180,7 +180,7 @@ export const Calendar = ({ selectedDate, onSelectDate }) => {
           </div>
           <div className="mt-3 pt-3 border-t border-gray-200 flex items-center text-xs text-gray-500 justify-center space-x-4">
             <div className="flex items-center">
-              <div className="w-3 h-3 rounded-full border-2 border-green-600 mr-1"></div>
+              <div className="w-3 h-3 rounded-full border-2 border-primary-sea mr-1"></div>
               <span>Hoy</span>
             </div>
             <div className="flex items-center">
