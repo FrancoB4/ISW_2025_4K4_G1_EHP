@@ -194,7 +194,7 @@ export const TermsAndConditions = ({
             onNext();
           }}
           disabled={!termsAccepted}
-          className={`px-6 py-2 rounded transition-colors${
+          className={`px-6 py-2 rounded transition-colors ${
             termsAccepted
               ? "bg-primary-sea text-white hover:bg-primary-forest"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"

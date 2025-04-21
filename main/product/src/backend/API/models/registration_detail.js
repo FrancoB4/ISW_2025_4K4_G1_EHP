@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.js";
 import { Registration } from "./registration.js";
+import { Schedule } from "./schedule.js";
 
 export const RegistrationDetail = sequelize.define(
     'RegistrationDetail',
@@ -39,7 +40,25 @@ export const RegistrationDetail = sequelize.define(
     {
         sequelize,
         modelName: 'RegistrationDetail',
-        timestamps: false    
+        timestamps: false,
+        hooks: {
+            afterCreate: async (registrationDetail) => {
+              try {
+                const registration = await Registration.findByPk(registrationDetail.registration_id);
+                
+                if (registration) {
+                  const schedule = await Schedule.findByPk(registration.schedule_id);
+      
+                  if (schedule && schedule.placesLeft > 0) {
+                    schedule.placesLeft -= 1;
+                    await schedule.save();
+                  }
+                }
+              } catch (error) {
+                console.error("Error al actualizar placesLeft:", error);
+              }
+            }
+          }    
     }
 );
 

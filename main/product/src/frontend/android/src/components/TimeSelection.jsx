@@ -55,7 +55,7 @@ export const TimeSelection = ({
                 selectedTime === slot.id ? "text-white" : "text-gray-500"
               }`}
             >
-              {capacity - slot.placesLeft} de {capacity} cupos
+              {slot.placesLeft} de {capacity} cupos disponibles
             </div>
           </button>
         ))}
