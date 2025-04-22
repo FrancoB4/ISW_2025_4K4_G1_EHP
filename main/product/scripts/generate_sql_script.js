@@ -23,7 +23,7 @@ function formatDate(date) {
   const mi = pad(date.getMinutes());
   const ss = pad(date.getSeconds());
 
-  return `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}.000 +00:00`;
+  return `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}.000 -03:00`;
 }
 
 for (let d = new Date(hoy); d <= fin; d.setDate(d.getDate() + 1)) {

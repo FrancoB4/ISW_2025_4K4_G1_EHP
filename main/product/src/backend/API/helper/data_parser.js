@@ -7,7 +7,7 @@ export const parseDataForRegistrationEmail = (registrations) => {
         const parsedRegistration = {
             name: registration.visitorName,
             dni: registration.dni,
-            clothing_size: registration.clothingSize,
+            clothing_size: registration.clothingSize ? registration.clothingSize : "N/C" ,
             age: (new Date().getFullYear() - new Date(registration.birthdate).getFullYear())
         };
         parsedRegistrations.push(parsedRegistration);

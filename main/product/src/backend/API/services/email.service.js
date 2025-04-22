@@ -34,17 +34,32 @@ export const sendRegistrationConfirmationEmail = async (email, registrationId, a
         console.log('[Servicio email | Inscripciones] Error: Faltan datos obligatorios.');
         return;
     };
+
+    const scheduleDate = new Date(scheduleStartdate);
+    const formattedSchedule = scheduleDate.toLocaleString('es-AR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+        timeZone: 'UTC',
+    });
+
     const templateParams = {
         email: email,
         activity: activity,
-        schedule: (new Date(scheduleStartdate)).toLocaleString(),
+        schedule: formattedSchedule,
         registrations: registrations,
         registration_id: registrationId
     };
+
     const response = await sendEmail(API_INSCRIPTION_TEMPLATE_ID, templateParams);
     return response;
 }
 
+// Ejemplo de test (descomentar para probar)
 // const a = await sendRegistrationConfirmationEmail("francobonfigliovazquez@gmail.com", 1, "Polo", Date.now(), [
 //     { name: "Ejemplo", dni: 12345678, clothing_size: "M", age: 19 },
 //     { name: "Ejemplo 2", dni: 87654321, clothing_size: "L", age: 25 }
