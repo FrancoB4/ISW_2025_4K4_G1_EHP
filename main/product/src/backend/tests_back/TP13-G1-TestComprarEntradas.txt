@@ -1,0 +1,166 @@
+func test_usuario_no_registrado(){
+    usuario = null
+    entradas = {...} // datos válidos
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Debe estar registrado para comprar entradas")
+}
+
+func test_usuario_registrado(){
+    usuario = { registrado: true, mail: "test@mail.com" }
+    entradas = {...}
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Compra realizada con éxito")
+}
+
+
+func test_cantidad_entradas_cero(){
+    usuario = { registrado: true, mail: "test@mail.com" }
+    entradas = { cantidad: 0, ... }
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Debe solicitar al menos una entrada")
+}
+
+func test_cantidad_entradas_diez(){
+    usuario = { registrado: true, mail: "test@mail.com" }
+    entradas = { cantidad: 10, ... }
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "No se pueden comprar más de 10 entradas")
+}
+
+func test_compra_no_supera_limite(){
+    usuario = { registrado: true, mail: "test@mail.com" }
+    entradas = {
+        cantidad: 10,
+        fecha: "2025-06-18",
+        tipoPase: "regular",
+        edades: [21, 21, 21, 21, 21, 21, 21, 21, 21, 21],
+        formaPago: "tarjeta"
+    }
+
+    resultado = comprarEntradas(usuario, entradas)
+
+    assert.lessEqual(resultado.entradas.cantidad, 10)
+}
+
+func test_cantidad_entradas_valida(){
+    usuario = { registrado: true, mail: "test@mail.com" }
+    entradas = { cantidad: 5, ... }
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Compra realizada con éxito")
+}
+
+func test_mas_de_diez_entradas(){
+    entradas.cantidad = 11
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "No se pueden comprar más de 10 entradas")
+}
+
+func test_fecha_pasada(){
+    entradas.fecha = "2023-01-01" // fecha anterior a hoy
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "La fecha debe ser actual o futura")
+}
+
+
+func test_dia_cerrado_jueves(){
+    entradas.fecha = "2025-06-19" // un jueves
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "El parque está cerrado ese día")
+}
+
+func test_dia_es_valido_para_visita(){
+    entradas = {
+        fecha: "2025-06-20"  // viernes
+    }
+    dia = obtenerDiaSemana(entradas.fecha)
+    diasHabilitados = ["lunes", "miércoles", "viernes", "sábado","domingo"]
+
+    assert.isIn(dia, diasHabilitados)
+}
+
+
+func test_tipo_pase_invalido(){
+    entradas.tipoPase = "premium"
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Tipo de pase inválido")
+}
+
+func test_tipo_pase_valido(){
+    entradas = {
+        tipoPase: "VIP"
+    }
+    tipo = obtenerTipoPase(entradas.tipoPase)
+    tipoPaseValido = ["VIP", "regular"]
+
+    assert.isIn(tipo, tipoPaseValido)
+}
+
+func test_edad_invalida(){
+    entradas.edades = [25, -3, 40]  // edad negativa
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Edad inválida para un visitante")
+}
+
+func test_pago_invalido(){
+    entradas.formaPago = "paypal"
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Forma de pago no válida")
+}
+
+func test_pago_tarjeta(){
+    entradas.formaPago = "tarjeta"
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Compra realizada con éxito")
+}
+
+
+func test_pago_efectivo(){
+    entradas.formaPago = "efectivo"
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Compra realizada con éxito")
+}
+
+func test_compra_exitosa(){
+    usuario = { registrado: true, mail: "test@mail.com" }
+    entradas = {
+        cantidad: 2,
+        fecha: "2025-06-21", // sábado
+        tipoPase: "VIP",
+        edades: [30, 28],
+        formaPago: "tarjeta"
+    }
+
+    resultado = comprarEntradas(usuario, entradas)
+    assert.equal(resultado, "Compra realizada con éxito")
+}
+
+func test_no_devuelve_error_en_compra_valida(){
+    usuario = { registrado: true, mail: "test@mail.com" }
+    entradas = {
+        cantidad: 2,
+        fecha: "2025-06-19",  // jueves
+        tipoPase: "VIP",
+        edades: [22, 24],
+        formaPago: "efectivo"
+    }
+
+    resultado = comprarEntradas(usuario, entradas)
+
+    // Asegura que no se devuelva un mensaje de error
+    assert.notEqual(resultado, "Debe estar registrado para comprar entradas")
+}
+
+func test_resumen_indica_cantidad_positiva(){
+    usuario = { registrado: true, mail: "test@mail.com" }
+    entradas = {
+        cantidad: 3,
+        fecha: "2025-06-21",  // sábado
+        tipoPase: "regular",
+        edades: [25, 30, 40],
+        formaPago: "tarjeta"
+    }
+
+    resultado = comprarEntradas(usuario, entradas)
+    
+    assert.greaterThan(resultado.entradas.cantidad, 0)
+}
