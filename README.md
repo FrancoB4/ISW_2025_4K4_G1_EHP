@@ -58,7 +58,7 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
 
 | Ítem de Configuración | Regla de Nombrado | Ubicación Física | Tipo de Ítem |
 |-----------------------|------------------|------------------|--------------|
-| Documento de Línea Base | `EHP_DOC_BASE_LINE_<ITERxx>_<NAME_BL>_<NN>.docx` | `base_line/` | Iteración |
+| Documento de Línea Base | `EHP_DOC_BASE_LINE_<NAME_BL>.md` | `base_line/` | Iteración |
 | Historias de Usuario | `EHP_US_<NN>.docx` | `main/product/requirements/user_stories/` | Producto |
 | Especificación de Requerimientos de Software | `EHP_ERS_<NN>.docx` | `main/project/requirements/` | Proyecto |
 | Manual de Usuario Técnico | `EHP_TECHNICAL_USER_MANUAL_<NN>.pdf` | `main/product/user_manuals/technical_manuals/` | Producto |
@@ -109,7 +109,6 @@ Repositorio para la materia ingenieria y calidad de software, del curso 4k4 - Gr
 
 ## Criterio de línea base
 
-Criterio de línea base
 Como grupo, hemos decidido que el momento para definir una nueva línea base será cuando el producto alcance un hito u objetivo importante en términos de funcionalidad, habiendo sido previamente testeado y validado para garantizar su estabilidad. Para ello, nos aseguraremos de que todas las funcionalidades clave estén implementadas, que no existan errores críticos y que la versión cumpla con los requisitos acordados. Además, la documentación e items de configuración asociados deberán estar actualizados, y el código deberá haber pasado por las revisiones necesarias antes de ser marcado como línea base en el repositorio.
 
 
@@ -117,8 +116,8 @@ Líneas base disponibles:
 
 | Nombre | Fecha | Descripción
 | ------------ | ------------ | ------------ | 
-| v1.0 | 25/03/2025 | Repositorio en su primera versión. | 
-
+| v0.0 | 30/03/2025 | Repositorio en su versión inicial. | 
+| v1.0 | 22/04/2025 | Implementación US Inscripción a Actividad. | 
 
 
 
